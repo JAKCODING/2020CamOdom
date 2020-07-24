@@ -1,0 +1,16 @@
+{
+  "buildFiles": [
+    "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\CMakeLists.txt"
+  ],
+  "cleanCommands": [
+    "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.externalNativeBuild\\cmake\\debug\\arm64-v8a --target clean"
+  ],
+  "libraries": {
+    "native-lib-Debug-arm64-v8a": {
+      "artifactName": "native-lib",
+      "buildCommand": "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\cmake\\3.6.4111459\\bin\\cmake.exe --build C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.externalNativeBuild\\cmake\\debug\\arm64-v8a --target native-lib",
+      "abi": "arm64-v8a",
+      "output": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a\\libnative-lib.so"
+    }
+  }
+}
