@@ -23,3 +23,12 @@ android {
     ndkVersion '21.3.6528147'
 }
 
+repositories {
+    maven {
+        url "https://maven.0x778.tk"
+    }
+}
+
+dependencies {
+    implementation 'com.spartronics4915.lib:ftc265:2.0.1'
+}

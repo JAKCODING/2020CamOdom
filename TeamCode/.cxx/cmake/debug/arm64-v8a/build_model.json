@@ -5,9 +5,9 @@
     "environmentVariables": []
   },
   "cmake": {
-    "cmakeArtifactsBaseFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.cxx\\cmake\\debug\\arm64-v8a",
-    "cmakeServerLogFile": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.cxx\\cmake\\debug\\arm64-v8a\\cmake_server_log.txt",
-    "cmakeWrappingBaseFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.cxx\\cxx\\debug\\arm64-v8a",
+    "cmakeArtifactsBaseFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\debug\\arm64-v8a",
+    "cmakeServerLogFile": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\debug\\arm64-v8a\\cmake_server_log.txt",
+    "cmakeWrappingBaseFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cxx\\debug\\arm64-v8a",
     "effectiveConfiguration": {
       "name": "traditional-android-studio-cmake-environment",
       "description": "Composite reified CMakeSettings configuration",
@@ -15,13 +15,13 @@
       "inheritEnvironments": [
         "ndk"
       ],
-      "buildRoot": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.cxx\\cmake\\debug\\arm64-v8a",
+      "buildRoot": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\debug\\arm64-v8a",
       "cmakeToolchain": "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147\\build\\cmake\\android.toolchain.cmake",
       "cmakeExecutable": "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\cmake.exe",
       "variables": [
         {
           "name": "CMAKE_FIND_ROOT_PATH",
-          "value": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.cxx\\cmake\\debug\\prefab\\arm64-v8a\\prefab"
+          "value": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\debug\\prefab\\arm64-v8a\\prefab"
         },
         {
           "name": "CMAKE_BUILD_TYPE",
@@ -57,7 +57,7 @@
         },
         {
           "name": "CMAKE_LIBRARY_OUTPUT_DIRECTORY",
-          "value": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a"
+          "value": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\build\\intermediates\\cmake\\debug\\obj\\arm64-v8a"
         },
         {
           "name": "CMAKE_MAKE_PROGRAM",
@@ -74,14 +74,14 @@
       ]
     }
   },
-  "cxxBuildFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.cxx\\cmake\\debug\\arm64-v8a",
+  "cxxBuildFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\debug\\arm64-v8a",
   "info": {
     "abi": "ARM64_V8A",
     "bitness": 64,
     "deprecated": false,
     "default": true
   },
-  "originalCxxBuildFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.cxx\\cmake\\debug\\arm64-v8a",
+  "originalCxxBuildFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\debug\\arm64-v8a",
   "variant": {
     "buildSystemArgumentList": [],
     "buildTargetSet": [],
@@ -97,12 +97,12 @@
         "ninjaExe": "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe"
       },
       "cmakeToolchainFile": "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147\\build\\cmake\\android.toolchain.cmake",
-      "cxxFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.cxx",
+      "cxxFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx",
       "gradleModulePathName": ":TeamCode",
-      "intermediatesFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\build\\intermediates",
-      "makeFile": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\CMakeLists.txt",
-      "moduleBuildFile": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\build.gradle",
-      "moduleRootFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode",
+      "intermediatesFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\build\\intermediates",
+      "makeFile": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\CMakeLists.txt",
+      "moduleBuildFile": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\build.gradle",
+      "moduleRootFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode",
       "ndkDefaultAbiList": [
         "ARMEABI_V7A",
         "ARM64_V8A",
@@ -167,12 +167,12 @@
       "ndkDefaultStl": "LIBCXX_STATIC",
       "ndkVersion": "21.3.6528147",
       "project": {
-        "compilerSettingsCacheFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\.cxx",
-        "cxxFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\.cxx",
+        "compilerSettingsCacheFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\.cxx",
+        "cxxFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\.cxx",
         "isBuildOnlyTargetAbiEnabled": true,
         "isCmakeBuildCohabitationEnabled": false,
         "isNativeCompilerSettingsCacheEnabled": false,
-        "rootBuildGradleFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart",
+        "rootBuildGradleFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom",
         "sdkFolder": "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk",
         "isPrefabEnabled": false
       },
@@ -189,14 +189,14 @@
         "SYSTEM": {}
       }
     },
-    "objFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\build\\intermediates\\cmake\\debug\\obj",
+    "objFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\build\\intermediates\\cmake\\debug\\obj",
     "variantName": "debug",
     "validAbiList": [
       "ARMEABI_V7A",
       "ARM64_V8A"
     ],
-    "prefabDirectory": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.cxx\\cmake\\debug\\prefab",
+    "prefabDirectory": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\debug\\prefab",
     "prefabPackageDirectoryList": []
   },
-  "prefabFolder": "C:\\Users\\jtofo\\StudioProjects\\road-runner-quickstart\\TeamCode\\.cxx\\cmake\\debug\\prefab\\arm64-v8a"
+  "prefabFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\debug\\prefab\\arm64-v8a"
 }
