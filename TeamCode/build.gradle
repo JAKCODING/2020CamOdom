@@ -31,4 +31,5 @@ repositories {
 
 dependencies {
     implementation 'com.spartronics4915.lib:ftc265:2.0.1'
+    implementation 'org.openftc:rev-extensions-2:1.2'
 }
