@@ -21,7 +21,7 @@ ANDROID_ABI:UNINITIALIZED=armeabi-v7a
 ANDROID_NDK:UNINITIALIZED=C:\Users\jtofo\AppData\Local\Android\Sdk\ndk\21.3.6528147
 
 //No help, variable specified on the command line.
-ANDROID_PLATFORM:UNINITIALIZED=android-19
+ANDROID_PLATFORM:UNINITIALIZED=android-24
 
 //No help, variable specified on the command line.
 CMAKE_ANDROID_ARCH_ABI:UNINITIALIZED=armeabi-v7a
@@ -113,9 +113,6 @@ CMAKE_EXE_LINKER_FLAGS_RELWITHDEBINFO:STRING=
 //Enable/Disable output of compile commands during generation.
 CMAKE_EXPORT_COMPILE_COMMANDS:BOOL=ON
 
-//No help, variable specified on the command line.
-CMAKE_FIND_ROOT_PATH:UNINITIALIZED=C:\Users\jtofo\StudioProjects\2020CamOdom\TeamCode\.cxx\cmake\release\prefab\armeabi-v7a\prefab
-
 //Install path prefix, prepended onto install directories.
 CMAKE_INSTALL_PREFIX:PATH=C:/Program Files (x86)/Project
 
@@ -202,7 +199,7 @@ CMAKE_STRIP:FILEPATH=C:/Users/jtofo/AppData/Local/Android/Sdk/ndk/21.3.6528147/t
 CMAKE_SYSTEM_NAME:UNINITIALIZED=Android
 
 //No help, variable specified on the command line.
-CMAKE_SYSTEM_VERSION:UNINITIALIZED=19
+CMAKE_SYSTEM_VERSION:UNINITIALIZED=24
 
 //The CMake toolchain file
 CMAKE_TOOLCHAIN_FILE:FILEPATH=C:/Users/jtofo/AppData/Local/Android/Sdk/ndk/21.3.6528147/build/cmake/android.toolchain.cmake
@@ -220,10 +217,10 @@ Project_BINARY_DIR:STATIC=C:/Users/jtofo/StudioProjects/2020CamOdom/TeamCode/.cx
 Project_SOURCE_DIR:STATIC=C:/Users/jtofo/StudioProjects/2020CamOdom/TeamCode
 
 //Path to a library.
-log-lib:FILEPATH=C:/Users/jtofo/AppData/Local/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/arm-linux-androideabi/19/liblog.so
+log-lib:FILEPATH=C:/Users/jtofo/AppData/Local/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/arm-linux-androideabi/24/liblog.so
 
 //Dependencies for the target
-native-lib_LIB_DEPENDS:STATIC=general;C:/Users/jtofo/AppData/Local/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/arm-linux-androideabi/19/liblog.so;
+native-lib_LIB_DEPENDS:STATIC=general;C:/Users/jtofo/AppData/Local/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64/sysroot/usr/lib/arm-linux-androideabi/24/liblog.so;
 
 
 ########################

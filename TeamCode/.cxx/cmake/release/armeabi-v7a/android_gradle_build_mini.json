@@ -13,8 +13,7 @@
       "artifactName": "native-lib",
       "buildCommand": "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\ninja.exe -C \"C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\release\\armeabi-v7a\" native-lib",
       "abi": "armeabi-v7a",
-      "output": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\\libnative-lib.so",
-      "runtimeFiles": []
+      "output": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\build\\intermediates\\cmake\\release\\obj\\armeabi-v7a\\libnative-lib.so"
     }
   }
 }

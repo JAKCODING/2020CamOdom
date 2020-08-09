@@ -1,6 +1,6 @@
 {
   "abi": "ARMEABI_V7A",
-  "abiPlatformVersion": 19,
+  "abiPlatformVersion": 24,
   "buildSettings": {
     "environmentVariables": []
   },
@@ -20,10 +20,6 @@
       "cmakeExecutable": "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\cmake\\3.10.2.4988404\\bin\\cmake.exe",
       "variables": [
         {
-          "name": "CMAKE_FIND_ROOT_PATH",
-          "value": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\release\\prefab\\armeabi-v7a\\prefab"
-        },
-        {
           "name": "CMAKE_BUILD_TYPE",
           "value": "Release"
         },
@@ -41,7 +37,7 @@
         },
         {
           "name": "ANDROID_PLATFORM",
-          "value": "android-19"
+          "value": "android-24"
         },
         {
           "name": "CMAKE_ANDROID_ARCH_ABI",
@@ -69,7 +65,7 @@
         },
         {
           "name": "CMAKE_SYSTEM_VERSION",
-          "value": "19"
+          "value": "24"
         }
       ]
     }
@@ -164,7 +160,6 @@
         "X86",
         "X86_64"
       ],
-      "ndkDefaultStl": "LIBCXX_STATIC",
       "ndkVersion": "21.3.6528147",
       "project": {
         "compilerSettingsCacheFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\.cxx",
@@ -173,8 +168,7 @@
         "isCmakeBuildCohabitationEnabled": false,
         "isNativeCompilerSettingsCacheEnabled": false,
         "rootBuildGradleFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom",
-        "sdkFolder": "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk",
-        "isPrefabEnabled": false
+        "sdkFolder": "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk"
       },
       "splitsAbiFilterSet": [],
       "stlSharedObjectMap": {
@@ -192,11 +186,7 @@
     "objFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\build\\intermediates\\cmake\\release\\obj",
     "variantName": "release",
     "validAbiList": [
-      "ARMEABI_V7A",
-      "ARM64_V8A"
-    ],
-    "prefabDirectory": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\release\\prefab",
-    "prefabPackageDirectoryList": []
-  },
-  "prefabFolder": "C:\\Users\\jtofo\\StudioProjects\\2020CamOdom\\TeamCode\\.cxx\\cmake\\release\\prefab\\armeabi-v7a"
+      "ARMEABI_V7A"
+    ]
+  }
 }
