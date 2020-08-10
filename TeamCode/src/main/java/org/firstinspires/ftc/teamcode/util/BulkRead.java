@@ -1,19 +1,13 @@
 package org.firstinspires.ftc.teamcode.util;
 
-import com.qualcomm.hardware.lynx.LynxI2cDeviceSynchV1;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.hardware.lynx.commands.core.LynxGetBulkInputDataCommand;
 import com.qualcomm.hardware.lynx.commands.core.LynxGetBulkInputDataResponse;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
-import com.qualcomm.robotcore.hardware.I2cController;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchImplOnSimple;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchSimple;
-
-import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
-import org.openftc.revextensions2.ExpansionHubEx;
-import org.openftc.revextensions2.RevBulkData;
 
 import java.util.ArrayList;
 
@@ -23,19 +17,19 @@ public class BulkRead {
     ArrayList<I2cDeviceSynch> i2cRead;
 
 
-    DcMotor x1, x2, y;
-    public int portX1, portX2, portY;
+    DcMotor x1, r, y;
+    public int portX1, portR, portY;
 
-    public BulkRead(LynxModule controlHub, DcMotor x1, DcMotor x2, DcMotor y, int[] i2cPorts) {
+    public BulkRead(LynxModule controlHub, DcMotor x1, DcMotor r, DcMotor y, int[] i2cPorts) {
 
         this.controlHub = controlHub;
 
         this.x1 = x1;
-        this.x2 = x2;
+        this.r = r;
         this.y = y;
 
         portX1 = this.x1.getPortNumber();
-        //portX2 = this.x2.getPortNumber();
+        portR = this.r.getPortNumber();
         portY = this.y.getPortNumber();
 
         /*for(int i = 0; i < i2cPorts.length; i++) {
@@ -64,7 +58,7 @@ public class BulkRead {
         {
             LynxGetBulkInputDataResponse lynxResponse = command.sendReceive();
             double posOne = (x1.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getEncoder(portX1) : lynxResponse.getEncoder(portX1);
-            //double posTwo = (x2.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getEncoder(portX2) : lynxResponse.getEncoder(portX2);
+            double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getEncoder(portR) : lynxResponse.getEncoder(portR);
             double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getEncoder(portY) : lynxResponse.getEncoder(portY);
             return new double[]{posOne/*, posTwo*/, posThree};
         }
