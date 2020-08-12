@@ -75,6 +75,25 @@ public class BulkRead {
 
     }
 
+    public synchronized double[] getMVelocity() {
+
+        LynxGetBulkInputDataCommand command = new LynxGetBulkInputDataCommand(controlHub);
+        try
+        {
+            LynxGetBulkInputDataResponse lynxResponse = command.sendReceive();
+            double posOne = (x1.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getVelocity(portX1) : lynxResponse.getVelocity(portX1);
+            double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getVelocity(portR) : lynxResponse.getVelocity(portR);
+            double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getVelocity(portY) : lynxResponse.getVelocity(portY);
+            return new double[]{posOne/*, posTwo*/, posThree};
+        }
+
+        catch (Exception e)
+        {
+            return new double[]{943028, 932432908};
+        }
+
+    }
+
     public synchronized double[] getGenericMotors(DcMotor d1, DcMotor d2, DcMotor d3, DcMotor d4) {
 
         LynxGetBulkInputDataCommand command = new LynxGetBulkInputDataCommand(controlHub);
