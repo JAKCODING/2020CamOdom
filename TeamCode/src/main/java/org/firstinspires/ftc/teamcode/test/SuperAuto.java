@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.test;
 
+import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.localization.ThreeTrackingWheelLocalizer;
 import com.acmerobotics.roadrunner.trajectory.Trajectory;
@@ -17,18 +18,16 @@ import org.jetbrains.annotations.NotNull;
 import java.util.Arrays;
 import java.util.List;
 
-public class LocalizerTest extends OpMode {
+public class SuperAuto extends OpMode {
 
     DcMotor encX, encY, encR;
     LynxModule controlHub;
     BulkRead bRead;
-    T265Camera cam;
     SampleMecanumDrive drive;
 
     public void init() {
 
         controlHub = hardwareMap.get(LynxModule.class, "Control Hub");
-        cam = new T265Camera(new Transform2d(), 0, hardwareMap.appContext);
         encX = hardwareMap.dcMotor.get("encX");
         encY = hardwareMap.dcMotor.get("encY");
         encR = hardwareMap.dcMotor.get("encR");
