@@ -1,5 +1,7 @@
 package org.firstinspires.ftc.teamcode.util;
 
+import com.qualcomm.hardware.lynx.LynxI2cDeviceSynchV1;
+import com.qualcomm.hardware.lynx.LynxI2cDeviceSynchV2;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.hardware.lynx.commands.core.LynxGetBulkInputDataCommand;
 import com.qualcomm.hardware.lynx.commands.core.LynxGetBulkInputDataResponse;
@@ -9,57 +11,43 @@ import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchImplOnSimple;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchSimple;
 
+import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
+
 import java.util.ArrayList;
 
 public class BulkRead {
 
     LynxModule controlHub;
-    ArrayList<I2cDeviceSynch> i2cRead;
 
 
-    DcMotor x1, r, y;
+    DcMotor x, r, y;
     public int portX1, portR, portY;
 
-    public BulkRead(LynxModule controlHub, DcMotor x1, DcMotor r, DcMotor y, int[] i2cPorts) {
+    public BulkRead(LynxModule controlHub, DcMotor x, DcMotor r, DcMotor y) {
 
         this.controlHub = controlHub;
 
-        this.x1 = x1;
+        this.x = x;
         this.r = r;
         this.y = y;
 
-        portX1 = this.x1.getPortNumber();
-        portR = this.r.getPortNumber();
+        portX1 = this.x.getPortNumber();
+        //portR = this.r.getPortNumber();
         portY = this.y.getPortNumber();
 
-        /*for(int i = 0; i < i2cPorts.length; i++) {
-            i2cRead.add(new BetterI2cDeviceSynchImplOnSimple(
-                    new LynxI2cDeviceSynchV1(AppUtil.getDefContext(), controlHub, i2cPorts[i]), true));
-        }*/
-
 
     }
 
-    public void armI2C(int heartbeatMs) {
-
-        for(int i = 0; i < i2cRead.size(); i++) {
-
-            i2cRead.get(i).setHeartbeatInterval(heartbeatMs);
-
-        }
-
-    }
 
 
     public synchronized double [] getMotors() {
 
-        LynxGetBulkInputDataCommand command = new LynxGetBulkInputDataCommand(controlHub);
         try
         {
-            LynxGetBulkInputDataResponse lynxResponse = command.sendReceive();
-            double posOne = (x1.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getEncoder(portX1) : lynxResponse.getEncoder(portX1);
-            double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getEncoder(portR) : lynxResponse.getEncoder(portR);
-            double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getEncoder(portY) : lynxResponse.getEncoder(portY);
+            LynxModule.BulkData bData = controlHub.getBulkData();
+            double posOne = (x.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorCurrentPosition(portX1) : bData.getMotorCurrentPosition(portX1);
+            //double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorCurrentPosition(portR) : bData.getMotorCurrentPosition(portR);
+            double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorCurrentPosition(portY) : bData.getMotorCurrentPosition(portY);
             return new double[]{posOne/*, posTwo*/, posThree};
         }
 
@@ -77,13 +65,12 @@ public class BulkRead {
 
     public synchronized double[] getMVelocity() {
 
-        LynxGetBulkInputDataCommand command = new LynxGetBulkInputDataCommand(controlHub);
         try
         {
-            LynxGetBulkInputDataResponse lynxResponse = command.sendReceive();
-            double posOne = (x1.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getVelocity(portX1) : lynxResponse.getVelocity(portX1);
-            double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getVelocity(portR) : lynxResponse.getVelocity(portR);
-            double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getVelocity(portY) : lynxResponse.getVelocity(portY);
+            LynxModule.BulkData bData = controlHub.getBulkData();
+            double posOne = (x.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portX1) : bData.getMotorVelocity(portX1);
+            //double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portR) : bData.getMotorVelocity(portR);
+            double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portY) : bData.getMotorVelocity(portY);
             return new double[]{posOne/*, posTwo*/, posThree};
         }
 
@@ -94,6 +81,7 @@ public class BulkRead {
 
     }
 
+    //TODO: Change this to the above method of response.
     public synchronized double[] getGenericMotors(DcMotor d1, DcMotor d2, DcMotor d3, DcMotor d4) {
 
         LynxGetBulkInputDataCommand command = new LynxGetBulkInputDataCommand(controlHub);
@@ -116,24 +104,6 @@ public class BulkRead {
         return new double[]{posOne, posTwo, posThree, posFour};
 
     }
-
-    /*public void i2cReadTest() {
-
-        i2cRead.get(1).read()
-
-    }*/
-
-    public class BetterI2cDeviceSynchImplOnSimple extends I2cDeviceSynchImplOnSimple {
-        public BetterI2cDeviceSynchImplOnSimple(I2cDeviceSynchSimple simple, boolean isSimpleOwned) {
-            super(simple, isSimpleOwned);
-        }
-
-        @Override
-        public void setReadWindow(ReadWindow window) {
-            // intentionally do nothing
-        }
-    }
-
 
     public String handleException(Exception e) {
 
