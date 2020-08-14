@@ -35,14 +35,12 @@ public class BulkReadTest extends SuperAuto {
         lDist = hardwareMap.get(DistanceSensor.class, "lDist");
         rDist = hardwareMap.get(DistanceSensor.class, "rDist");
 
-        bRead = new BulkRead(controlHub, encX, encY, encR);
         drive = new SampleMecanumDrive(hardwareMap);
 
-        bRead = new BulkRead(controlHub, encX1, encX2, encY);
 
         LynxI2cConfigureChannelCommand.SpeedCode speedCode = LynxI2cConfigureChannelCommand.SpeedCode.FAST_400K;
-        LynxI2cConfigureChannelCommand command = new LynxI2cConfigureChannelCommand(controlHub, 0, speedCode);
-        LynxI2cConfigureChannelCommand command2 = new LynxI2cConfigureChannelCommand(controlHub, 1, speedCode);
+        LynxI2cConfigureChannelCommand command = new LynxI2cConfigureChannelCommand(controlHub, 1, speedCode);
+        LynxI2cConfigureChannelCommand command2 = new LynxI2cConfigureChannelCommand(controlHub, 2, speedCode);
         try
         {
             command.send();
