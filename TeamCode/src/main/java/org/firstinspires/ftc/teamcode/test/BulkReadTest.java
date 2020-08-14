@@ -19,11 +19,9 @@ import org.openftc.revextensions2.RevBulkData;
 @Autonomous(name="bulkread")
 public class BulkReadTest extends SuperAuto {
 
-    LynxUsbDevice lUsb;
     ExpansionHubEx expX;
     LynxModule controlHub;
     BulkRead bRead;
-    DcMotor encX1, encY, encX2;
     DistanceSensor lDist, rDist;
 
     public void init() {
