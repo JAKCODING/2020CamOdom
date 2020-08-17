@@ -1,6 +1,8 @@
 /*Contains support for 400k i2c reads.*/
 package org.firstinspires.ftc.teamcode.test;
 
+import android.support.annotation.NonNull;
+
 import com.acmerobotics.dashboard.telemetry.TelemetryPacket;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.localization.ThreeTrackingWheelLocalizer;
@@ -12,6 +14,7 @@ import com.qualcomm.hardware.lynx.commands.core.LynxI2cConfigureChannelCommand;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
+import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.spartronics4915.lib.T265Camera;
 
 import org.firstinspires.ftc.robotcore.internal.android.dx.util.Warning;
@@ -35,41 +38,16 @@ public class SuperAuto extends OpMode {
 
         controlHub = hardwareMap.get(LynxModule.class, "Control Hub");
 
+        encX = hardwareMap.dcMotor.get("bLeft");
+        encR = hardwareMap.dcMotor.get("fRight");
+        encY = hardwareMap.dcMotor.get("bRight");
+
+        bRead = new BulkRead(controlHub, encX, encR, encY);
+        drive = new SampleMecanumDrive(hardwareMap);
+
     }
 
     public void loop() {
-        throw new Warning("This loop is on fire.");
     }
 
-    public Pose2d currentPose = new Pose2d();
-
-    public class EnforcersThreeWheelLocalizer extends ThreeTrackingWheelLocalizer {
-
-        Pose2d camPose;
-
-        public void setCamPose(Pose2d camPose) {
-            this.camPose = camPose;
-        }
-
-        public EnforcersThreeWheelLocalizer(@NotNull List<Pose2d> wheelPoses, Pose2d camPose) {
-            super(wheelPoses);
-            this.camPose = camPose;
-        }
-        public List<Double> getWheelPositions() {
-
-            double camX = camPose.getX();
-            double camY = camPose.getY();
-
-
-
-            return Arrays.asList(
-                    bRead.getMotors()[0],
-                    bRead.getMotors()[1],
-                    bRead.getMotors()[2]
-            );
-        }
-
-
-
-    }
 }

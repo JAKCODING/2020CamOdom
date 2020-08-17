@@ -18,9 +18,8 @@ import java.util.ArrayList;
 public class BulkRead {
 
     LynxModule controlHub;
-//oop
 
-    DcMotor x, r, y;
+    public DcMotor x, r, y;
     public int portX1, portR, portY;
 
     public BulkRead(LynxModule controlHub, DcMotor x, DcMotor r, DcMotor y) {
@@ -46,7 +45,7 @@ public class BulkRead {
         {
             LynxModule.BulkData bData = controlHub.getBulkData();
             double posOne = (x.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorCurrentPosition(portX1) : bData.getMotorCurrentPosition(portX1);
-            //double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorCurrentPosition(portR) : bData.getMotorCurrentPosition(portR);
+            double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorCurrentPosition(portR) : bData.getMotorCurrentPosition(portR);
             double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorCurrentPosition(portY) : bData.getMotorCurrentPosition(portY);
             return new double[]{posOne/*, posTwo*/, posThree};
         }
@@ -69,7 +68,7 @@ public class BulkRead {
         {
             LynxModule.BulkData bData = controlHub.getBulkData();
             double posOne = (x.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portX1) : bData.getMotorVelocity(portX1);
-            //double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portR) : bData.getMotorVelocity(portR);
+            double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portR) : bData.getMotorVelocity(portR);
             double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portY) : bData.getMotorVelocity(portY);
             return new double[]{posOne/*, posTwo*/, posThree};
         }
