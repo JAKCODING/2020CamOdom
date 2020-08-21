@@ -19,7 +19,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.DriveConstraints;
 public class DriveConstants {
 
     /* These are motor constants that should be listed online for your motors.*/
-    public static final double TICKS_PER_REV = 8192;
+    public static final double TICKS_PER_REV = 2048;
     public static final double MAX_RPM = 435f;
 
     /*
@@ -37,7 +37,7 @@ public class DriveConstants {
      * angular distances although most angular parameters are wrapped in Math.toRadians() for
      * convenience. Make sure to exclude any gear ratio included in MOTOR_CONFIG from GEAR_RATIO.
      */
-    public static double WHEEL_RADIUS = .74; // in
+    public static double WHEEL_RADIUS = 1.05; // in
     public static double GEAR_RATIO = 1/2f; // output (wheel) speed / input (motor) speed
     public static double TRACK_WIDTH = 14.5; // in
 

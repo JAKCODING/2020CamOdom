@@ -1,5 +1,5 @@
 {
-  "ndkFolder": "C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147",
+  "ndkFolder": "C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147",
   "messages": [
     {
       "level": "INFO",
@@ -7,7 +7,7 @@
     },
     {
       "level": "INFO",
-      "message": "ndk.dir in local.properties is C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147"
+      "message": "ndk.dir in local.properties is C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147"
     },
     {
       "level": "INFO",
@@ -15,23 +15,27 @@
     },
     {
       "level": "INFO",
-      "message": "sdkFolder is C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk"
+      "message": "sdkFolder is C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk"
     },
     {
       "level": "INFO",
-      "message": "Considering C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147 by ndk.dir"
+      "message": "Considering C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147 by ndk.dir"
     },
     {
       "level": "INFO",
-      "message": "Considering C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\ndk-bundle in SDK ndk-bundle folder"
+      "message": "Considering C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk-bundle in SDK ndk-bundle folder"
     },
     {
       "level": "INFO",
-      "message": "Considering C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147 in SDK ndk folder"
+      "message": "Considering C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.0.6113669 in SDK ndk folder"
     },
     {
       "level": "INFO",
-      "message": "Choosing C:\\Users\\jtofo\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147 from ndk.dir which had the requested version 21.3.6528147"
+      "message": "Considering C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147 in SDK ndk folder"
+    },
+    {
+      "level": "INFO",
+      "message": "Choosing C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147 from ndk.dir which had the requested version 21.3.6528147"
     }
   ]
 }
