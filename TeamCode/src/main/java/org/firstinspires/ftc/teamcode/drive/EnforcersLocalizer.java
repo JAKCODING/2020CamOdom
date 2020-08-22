@@ -11,12 +11,12 @@ import java.util.List;
 
 public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
 
-    public static double TICKS_PER_REV = 8192;
-    public static double WHEEL_RADIUS = 1.39; // in
-    public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
+    public static double TICKS_PER_REV = DriveConstants.TICKS_PER_REV;
+    public static double WHEEL_RADIUS = DriveConstants.WHEEL_RADIUS; // in
+    public static double GEAR_RATIO = DriveConstants.GEAR_RATIO; // output (wheel) speed / input (encoder) speed
 
     public static double LATERAL_DISTANCE = 14.5; // in; distance between the left and right wheels
-    public static double FORWARD_OFFSET = 7; // in; offset of the lateral wheel
+    public static double FORWARD_OFFSET = -7; // in; offset of the lateral wheel
 
     private DcMotor leftEncoder, rightEncoder, frontEncoder;
 
