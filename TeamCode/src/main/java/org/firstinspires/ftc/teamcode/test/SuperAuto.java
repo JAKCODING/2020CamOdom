@@ -18,6 +18,7 @@ import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.spartronics4915.lib.T265Camera;
 
 import org.firstinspires.ftc.robotcore.internal.android.dx.util.Warning;
+import org.firstinspires.ftc.teamcode.T265.T265;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
 import org.firstinspires.ftc.teamcode.util.BulkRead;
 import org.firstinspires.ftc.teamcode.util.Pose2dConvert;
@@ -34,6 +35,9 @@ public class SuperAuto extends OpMode {
     SampleMecanumDrive drive;
     Pose2dConvert p2c;
 
+    public T265 slamra;
+    public double slamX=0, slamY=0, slamAng=0;
+
     public void init() {
 
         controlHub = hardwareMap.get(LynxModule.class, "Control Hub");
@@ -45,9 +49,30 @@ public class SuperAuto extends OpMode {
         bRead = new BulkRead(controlHub, encX, encR, encY);
         drive = new SampleMecanumDrive(hardwareMap);
 
+        slamra = new T265(hardwareMap, 0.8, -5.625, 7.625, 0);
+
+        init_op();
+    }
+
+    public void start() {
+        //slamra.start();
+    }
+
+    public void init_op() {
+
     }
 
     public void loop() {
+        /*slamra.update();
+        slamX = slamra.getX();
+        slamY = slamra.getY();
+        slamAng = slamra.getAng();*/
+
+
+        loop_op();
     }
 
+    public void loop_op() {
+
+    }
 }

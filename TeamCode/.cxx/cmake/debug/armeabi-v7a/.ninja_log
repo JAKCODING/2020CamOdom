@@ -1,3 +1,3 @@
 # ninja log v5
-1	178	618711825	CMakeFiles/native-lib.dir/src/main/cpp/ayopoggers.cpp.o	eddb5f4111562073
-179	631	618711826	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	2ce14b805ed06619
+1	211	619756881	CMakeFiles/native-lib.dir/src/main/cpp/ayopoggers.cpp.o	e3080cc6c1f1a87e
+212	515	619756881	../../../../build/intermediates/cmake/debug/obj/armeabi-v7a/libnative-lib.so	b3a89bf25c7fb42a
