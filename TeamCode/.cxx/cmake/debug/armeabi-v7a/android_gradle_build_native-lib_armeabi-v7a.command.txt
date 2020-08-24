@@ -1,7 +1,7 @@
-Executable : C:\Users\mlevi\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\ninja.exe
+Executable : C:\Users\jtofo\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\ninja.exe
 arguments : 
 -C
-C:\Users\mlevi\Downloads\2020CamOdom\TeamCode\.cxx\cmake\debug\armeabi-v7a
+C:\Users\jtofo\StudioProjects\2020CamOdom\TeamCode\.cxx\cmake\debug\armeabi-v7a
 native-lib
 jvmArgs : 
 

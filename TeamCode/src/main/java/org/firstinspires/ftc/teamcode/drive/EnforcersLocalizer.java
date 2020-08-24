@@ -6,6 +6,9 @@ import com.acmerobotics.roadrunner.localization.ThreeTrackingWheelLocalizer;
 import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
+import org.firstinspires.ftc.teamcode.T265.T265;
+import org.firstinspires.ftc.teamcode.util.BulkRead;
+
 import java.util.Arrays;
 import java.util.List;
 
@@ -17,10 +20,17 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
 
     public static double LATERAL_DISTANCE = 14.5; // in; distance between the left and right wheels
     public static double FORWARD_OFFSET = -7; // in; offset of the lateral wheel
-//hi
-    private DcMotor leftEncoder, rightEncoder, frontEncoder;
+    double poseX=0, poseY=0, poseAng=0;
+    double velX=0, velY=0, velAng=0;
 
-    public EnforcersLocalizer(HardwareMap hardwareMap) {
+    int portL, portR, portF;
+
+    boolean isStarted = false;
+    private DcMotor leftEncoder, rightEncoder, frontEncoder;
+    BulkRead bRead;
+    T265 slamra;
+
+    public EnforcersLocalizer(HardwareMap hardwareMap/*, T265 slamra, BulkRead bRead*/) {
         super(Arrays.asList(
                 new Pose2d(0, LATERAL_DISTANCE / 2, 0), // left
                 new Pose2d(0, -LATERAL_DISTANCE / 2, 0), // right
@@ -31,6 +41,23 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         rightEncoder = hardwareMap.dcMotor.get("fRight");
         frontEncoder = hardwareMap.dcMotor.get("bRight");
 
+        portL = leftEncoder.getPortNumber(); portR = rightEncoder.getPortNumber(); portF = frontEncoder.getPortNumber();
+
+        this.slamra = slamra;
+        this.bRead = bRead;
+
+    }
+
+    public void start() {
+        slamra.start();
+        isStarted = true;
+    }
+
+    public void stop() {
+        if (isStarted) {
+            slamra.stop();
+            isStarted = false;
+        }
     }
 
     public static double encoderTicksToInches(int ticks) {
@@ -45,5 +72,21 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
                 encoderTicksToInches(rightEncoder.getCurrentPosition()),
                 encoderTicksToInches(frontEncoder.getCurrentPosition())
         );
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        if (isStarted) {
+            slamra.update();
+
+            poseX = slamra.getX();
+            poseY = slamra.getY();
+            poseAng = slamra.getAng();
+
+            velX = slamra.getVelX();
+            velY = slamra.getVelY();
+            velAng = slamra.getVelAng();
+        }
     }
 }

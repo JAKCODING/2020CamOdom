@@ -1,5 +1,6 @@
 package org.firstinspires.ftc.teamcode.util;
 
+import com.qualcomm.hardware.bosch.BNO055IMU;
 import com.qualcomm.hardware.lynx.LynxI2cDeviceSynchV1;
 import com.qualcomm.hardware.lynx.LynxI2cDeviceSynchV2;
 import com.qualcomm.hardware.lynx.LynxModule;
@@ -11,7 +12,9 @@ import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchImplOnSimple;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchSimple;
 
+import org.firstinspires.ftc.robotcore.external.navigation.AngleUnit;
 import org.firstinspires.ftc.robotcore.internal.system.AppUtil;
+import org.firstinspires.ftc.teamcode.drive.DriveConstants;
 
 import java.util.ArrayList;
 
@@ -67,9 +70,9 @@ public class BulkRead {
         try
         {
             LynxModule.BulkData bData = controlHub.getBulkData();
-            double posOne = (x.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portX1) : bData.getMotorVelocity(portX1);
-            double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portR) : bData.getMotorVelocity(portR);
-            double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portY) : bData.getMotorVelocity(portY);
+            double posOne = (x.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portX1)/ DriveConstants.TICKS_PER_INCH : bData.getMotorVelocity(portX1)/ DriveConstants.TICKS_PER_INCH;
+            double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portR)/ DriveConstants.TICKS_PER_INCH : bData.getMotorVelocity(portR)/ DriveConstants.TICKS_PER_INCH;
+            double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portY)/ DriveConstants.TICKS_PER_INCH : bData.getMotorVelocity(portY)/ DriveConstants.TICKS_PER_INCH;
             return new double[]{posOne/*, posTwo*/, posThree};
         }
 

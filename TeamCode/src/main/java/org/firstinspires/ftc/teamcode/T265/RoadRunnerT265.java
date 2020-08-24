@@ -1,3 +1,4 @@
+/*
 package org.firstinspires.ftc.teamcode.T265;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
@@ -6,6 +7,7 @@ import com.acmerobotics.roadrunner.localization.ThreeTrackingWheelLocalizer;
 import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 
 import org.firstinspires.ftc.teamcode.test.SuperAuto;
+import org.firstinspires.ftc.teamcode.util.BulkRead;
 import org.jetbrains.annotations.NotNull;
 import org.jetbrains.annotations.Nullable;
 
@@ -21,7 +23,7 @@ public class RoadRunnerT265 extends SuperAuto {
     int step = 0;
 
     public void init_op() {
-        localizer = new T265Localizer(slamra);
+        localizer = new T265Localizer(slamra, new BulkRead());
     }
 
     public void start() {
@@ -44,13 +46,14 @@ public class RoadRunnerT265 extends SuperAuto {
 class T265Localizer implements Localizer {
 
     T265 slamra;
+    BulkRead bRead;
 
     double poseX=0, poseY=0, poseAng=0;
     double velX=0, velY=0, velAng=0;
 
     boolean isStarted = false;
 
-    T265Localizer(T265 slamra) {
+    T265Localizer(T265 slamra, BulkRead bRead) {
         this.slamra = slamra;
     }
 
@@ -91,6 +94,8 @@ class T265Localizer implements Localizer {
     @Override
     public void update() {
         if (isStarted) {
+            double[] mVel = bRead.getMVelocity();
+            slamra.sendOdometry(mVel[2], -mVel[0]);
             slamra.update();
 
             poseX = slamra.getX();
@@ -103,3 +108,4 @@ class T265Localizer implements Localizer {
         }
     }
 }
+*/
