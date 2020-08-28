@@ -1,26 +1,24 @@
 package org.firstinspires.ftc.teamcode.test;
 
+import com.qualcomm.robotcore.eventloop.opmode.Autonomous;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
-import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 
-@TeleOp(name = "odometer test")
+@Autonomous(name = "Odometer Test")
 public class OdomTest extends OpMode {
 
-    DcMotor enc;
+    DcMotorEx leftEnc, rightEnc, frontEnc;
 
     public void init() {
-        enc = hardwareMap.dcMotor.get("e");
+        leftEnc = hardwareMap.get(DcMotorEx.class, "bRight");
+        rightEnc = hardwareMap.get(DcMotorEx.class, "bLeft");
+        frontEnc = hardwareMap.get(DcMotorEx.class, "fRight");
     }
 
     public void loop() {
-
-        telemetry.addData("encoder output: ", enc.getCurrentPosition());
-
+        telemetry.addData("Left Enc: ", leftEnc.getCurrentPosition());
+        telemetry.addData("Right Enc: ", rightEnc.getCurrentPosition());
+        telemetry.addData("Front Enc: ", frontEnc.getCurrentPosition());
     }
-
-    public void stop() {
-
-    }
-
 }
