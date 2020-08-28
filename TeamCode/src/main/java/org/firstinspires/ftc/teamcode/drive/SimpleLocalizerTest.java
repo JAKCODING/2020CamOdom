@@ -22,7 +22,7 @@ public class SimpleLocalizerTest extends OpMode {
         fRight = hardwareMap.dcMotor.get("fRight");
         bLeft = hardwareMap.dcMotor.get("bLeft");
         bRight = hardwareMap.dcMotor.get("bRight");
-
+//
         fRight.setDirection(DcMotorSimple.Direction.REVERSE);
         bRight.setDirection(DcMotorSimple.Direction.REVERSE);
 
