@@ -19,7 +19,7 @@ import com.acmerobotics.roadrunner.trajectory.constraints.DriveConstraints;
 public class DriveConstants {
 
     /* These are motor constants that should be listed online for your motors.*/
-    public static final double TICKS_PER_REV = 2048;
+    public static final double TICKS_PER_REV = 8192;
     public static final double MAX_RPM = 435f;
 
     /*
@@ -38,8 +38,7 @@ public class DriveConstants {
      * convenience. Make sure to exclude any gear ratio included in MOTOR_CONFIG from GEAR_RATIO.
      */
     public static double WHEEL_RADIUS = 0.74d; // in
-    public static double GEAR_RATIO = 1/2d; // output (wheel) speed / input (motor) speed
-    public static double TRACK_WIDTH = 14.5; // in
+    public static double TRACK_WIDTH = 15; // in
 
     /*
      * These are the feedforward parameters used to model the drive motor behavior. If you are using
@@ -66,11 +65,11 @@ public class DriveConstants {
 
 
     public static double encoderTicksToInches(double ticks) {
-        return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
+        return WHEEL_RADIUS * 2 * Math.PI * ticks / TICKS_PER_REV;
     }
 
     public static double rpmToVelocity(double rpm) {
-        return rpm * GEAR_RATIO * 2 * Math.PI * WHEEL_RADIUS / 60.0;
+        return rpm * 2 * Math.PI * WHEEL_RADIUS / 60.0;
     }
 
     public static double getMotorVelocityF() {

@@ -5,10 +5,12 @@ import com.acmerobotics.roadrunner.localization.ThreeTrackingWheelLocalizer;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.jetbrains.annotations.NotNull;
+import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
@@ -82,7 +84,7 @@ class ThreeWheelTracking extends ThreeTrackingWheelLocalizer {
     private final static double Y_OFFSET = 6.5;
     private final static double X_OFFSET = -2.5;
 
-    DcMotor xFront, xBack, yBack;
+    DcMotorEx xFront, xBack, yBack;
 
     public ThreeWheelTracking(HardwareMap hardwareMap) {
         super(Arrays.asList(
@@ -91,9 +93,12 @@ class ThreeWheelTracking extends ThreeTrackingWheelLocalizer {
                 new Pose2d(X_OFFSET, -Y_OFFSET, Math.toRadians(0))
         ));
 
-        xFront = hardwareMap.dcMotor.get("bLeft");
-        xBack = hardwareMap.dcMotor.get("bRight");
-        yBack = hardwareMap.dcMotor.get("fRight");
+        xFront = hardwareMap.get(DcMotorEx.class, "bLeft");
+        xBack = hardwareMap.get(DcMotorEx.class, "bRight");
+        yBack = hardwareMap.get(DcMotorEx.class, "fRight");
+
+        xBack.setDirection(DcMotorSimple.Direction.REVERSE);
+        yBack.setDirection(DcMotorSimple.Direction.REVERSE);
     }
 
     @NotNull
@@ -101,8 +106,18 @@ class ThreeWheelTracking extends ThreeTrackingWheelLocalizer {
     public List<Double> getWheelPositions() {
         return Arrays.asList(
                 encoderTicksToInches(xFront.getCurrentPosition()),
-                -encoderTicksToInches(xBack.getCurrentPosition()),
-                -encoderTicksToInches(yBack.getCurrentPosition())
+                encoderTicksToInches(xBack.getCurrentPosition()),
+                encoderTicksToInches(yBack.getCurrentPosition())
+        );
+    }
+
+    @Nullable
+    @Override
+    public List<Double> getWheelVelocities() {
+        return Arrays.asList(
+                encoderTicksToInches(xFront.getVelocity()),
+                encoderTicksToInches(xBack.getVelocity()),
+                encoderTicksToInches(yBack.getVelocity())
         );
     }
 
@@ -110,3 +125,66 @@ class ThreeWheelTracking extends ThreeTrackingWheelLocalizer {
         return WHEEL_RADIUS * 2 * Math.PI * (ticks / TICKS_PER_REV);
     }
 }
+
+/*
+
+    */
+/**
+         * Get the position using the tracking camera
+         * @return Position in inches and degrees
+         *//*
+
+    public Pose2d getCamPosition() {
+        return new Pose2d(poseX, poseY, poseAng);
+    }
+
+    */
+/**
+     * Get the velocity using the tracking camera
+     * @return Velocity in inches per second and degrees per second
+     *//*
+
+    public Pose2d getCamVelocity() {
+        return new Pose2d(velX, velY, velAng);
+    }
+
+    */
+/**
+     * Get the position using wheeled odometry
+     * @return Position in inches and radians
+     *//*
+
+    public Pose2d getOdomPosition() {
+        return getPoseEstimate();
+    }
+
+    */
+/**
+     * Get the velocity using wheeled odometry
+     * @return Velocity in inches per second and radians per second
+     *//*
+
+    public Pose2d getOdomVelocity() {
+        return getOdomPosition().minus(lastPose).div((System.currentTimeMillis() - lastTime)/1000);
+    }
+
+    @Override
+    public void update() {
+        super.update();
+        velocity = getOdomVelocity();
+        lastPose = getOdomPosition();
+        lastTime = System.currentTimeMillis();
+
+        if (isStarted) {
+            slamra.sendOdometry(velocity.getY(), -velocity.getX());
+            slamra.update();
+
+            poseX = slamra.getX();
+            poseY = slamra.getY();
+            poseAng = slamra.getAng();
+
+            velX = slamra.getVelX();
+            velY = slamra.getVelY();
+            velAng = slamra.getVelAng();
+        }
+    }*/

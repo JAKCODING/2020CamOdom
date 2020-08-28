@@ -143,7 +143,7 @@ public class T265 {
      */
     public void sendOdometry(double velX, double velY) {
         //Convert inches / sec to meters / sec and account for wacky camera positioning
-        double velXMPerS = -velY * DistanceUnit.mPerInch;
+        double velXMPerS = velY * DistanceUnit.mPerInch;
         double velYMPerS = -velX * DistanceUnit.mPerInch;
         slamra.sendOdometry(velXMPerS, velYMPerS);
     }
