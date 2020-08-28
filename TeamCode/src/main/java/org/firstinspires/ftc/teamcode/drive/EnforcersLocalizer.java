@@ -3,7 +3,9 @@ import android.support.annotation.NonNull;
 
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.localization.ThreeTrackingWheelLocalizer;
+import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 
 import org.firstinspires.ftc.teamcode.T265.T265;
@@ -14,6 +16,8 @@ import java.util.Arrays;
 import java.util.List;
 
 public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
+
+    LynxModule lMod;
 
     public static double TICKS_PER_REV = DriveConstants.TICKS_PER_REV;
     public static double WHEEL_RADIUS = DriveConstants.WHEEL_RADIUS; // in
@@ -28,27 +32,31 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
 
     boolean isStarted = false;
     private DcMotor leftEncoder, rightEncoder, frontEncoder;
-    BulkRead bRead;
+    public BulkRead bRead;
     T265 slamra;
 
     Pose2d velocity, lastPose;
     double lastTime;
 
-    public EnforcersLocalizer(HardwareMap hardwareMap, /*T265 slamra,*/ BulkRead bRead) {
+    public EnforcersLocalizer(HardwareMap hardwareMap) {
         super(Arrays.asList(
                 new Pose2d(0, LATERAL_DISTANCE / 2, 0), // left
                 new Pose2d(0, -LATERAL_DISTANCE / 2, 0), // right
-                new Pose2d(FORWARD_OFFSET, 0, Math.toRadians(90)) // front
+                new Pose2d(FORWARD_OFFSET, LATERAL_DISTANCE /2, Math.toRadians(90)) // front
         ));
+
+        lMod = hardwareMap.get(LynxModule.class, "Control Hub");
 
         leftEncoder = hardwareMap.dcMotor.get("bRight");
         rightEncoder = hardwareMap.dcMotor.get("bLeft");
         frontEncoder = hardwareMap.dcMotor.get("fRight");
 
-        portL = leftEncoder.getPortNumber(); portR = rightEncoder.getPortNumber(); portF = frontEncoder.getPortNumber();
+        //leftEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
+        frontEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        //this.slamra = slamra;
-        this.bRead = bRead;
+        portL = leftEncoder.getPortNumber(); portR = rightEncoder.getPortNumber(); portF = frontEncoder.getPortNumber();
+        bRead = new BulkRead(lMod, leftEncoder, rightEncoder, frontEncoder);
+        //slamra = new T265(hardwareMap, 0, -5.625, 7.625, 0);
 
     }
 
@@ -74,7 +82,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         double[] vel = bRead.getMotors();
         return Arrays.asList(
                 encoderTicksToInches((int) vel[0]),
-                encoderTicksToInches((int) vel[1]),
+                -encoderTicksToInches((int) vel[1]),
                 encoderTicksToInches((int) vel[2])
         );
     }
@@ -84,7 +92,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     public List<Double> getWheelVelocities() {
         double[] vel = bRead.getMVelocity();
         return Arrays.asList(
-                encoderTicksToInches((int) vel[0]),
+                -encoderTicksToInches((int) vel[0]),
                 encoderTicksToInches((int) vel[1]),
                 encoderTicksToInches((int) vel[2])
         );
@@ -93,7 +101,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     @Override
     public void update() {
         super.update();
-        velocity = getOdomVelocity();
+        /*velocity = getOdomVelocity();
         lastPose = getOdomPosition();
         lastTime = System.currentTimeMillis();
 
@@ -108,7 +116,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
             velX = slamra.getVelX();
             velY = slamra.getVelY();
             velAng = slamra.getVelAng();
-        }
+        }*/
     }
     /**
      * Get the position using the tracking camera
