@@ -34,7 +34,7 @@ public class BulkRead {
         this.y = y;
 
         portX1 = this.x.getPortNumber();
-        //portR = this.r.getPortNumber();
+        portR = this.r.getPortNumber();
         portY = this.y.getPortNumber();
 
 
@@ -50,7 +50,7 @@ public class BulkRead {
             double posOne = (x.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorCurrentPosition(portX1) : bData.getMotorCurrentPosition(portX1);
             double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorCurrentPosition(portR) : bData.getMotorCurrentPosition(portR);
             double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorCurrentPosition(portY) : bData.getMotorCurrentPosition(portY);
-            return new double[]{posOne/*, posTwo*/, posThree};
+            return new double[]{posOne, posTwo, posThree};
         }
 
         catch (Exception e)
@@ -73,7 +73,7 @@ public class BulkRead {
             double posOne = (x.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portX1)/ DriveConstants.TICKS_PER_INCH : bData.getMotorVelocity(portX1)/ DriveConstants.TICKS_PER_INCH;
             double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portR)/ DriveConstants.TICKS_PER_INCH : bData.getMotorVelocity(portR)/ DriveConstants.TICKS_PER_INCH;
             double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portY)/ DriveConstants.TICKS_PER_INCH : bData.getMotorVelocity(portY)/ DriveConstants.TICKS_PER_INCH;
-            return new double[]{posOne/*, posTwo*/, posThree};
+            return new double[]{posOne, posTwo, posThree};
         }
 
         catch (Exception e)
@@ -104,12 +104,6 @@ public class BulkRead {
         double posFour = (d4.getDirection() == DcMotorSimple.Direction.REVERSE) ? -lynxResponse.getEncoder(d4.getPortNumber()) : lynxResponse.getEncoder(d4.getPortNumber());
 
         return new double[]{posOne, posTwo, posThree, posFour};
-
-    }
-
-    public String handleException(Exception e) {
-
-        return e.getStackTrace().toString();
 
     }
 

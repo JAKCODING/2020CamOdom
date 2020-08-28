@@ -23,6 +23,7 @@ public class DriveConstants {
      */
     public static final double TICKS_PER_REV = 8192;
     public static final double MAX_RPM = 435;
+    public static final double TICKS_PER_INCH = encoderTicksToInches(TICKS_PER_REV);
 
     /*
      * Set the first flag appropriately. If using the built-in motor velocity PID, update
