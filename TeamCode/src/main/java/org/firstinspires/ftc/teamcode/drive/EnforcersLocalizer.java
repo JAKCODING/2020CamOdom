@@ -74,7 +74,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         }
     }*/
 
-    public static double encoderTicksToInches(int ticks) {
+    public static double encoderTicksToInches(double ticks) {
         return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
     }
 
@@ -83,9 +83,9 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     public List<Double> getWheelPositions() {
         double[] vel = bRead.getMotors();
         return Arrays.asList(
-                encoderTicksToInches((int) vel[0]) * yMultiplier,
-                -encoderTicksToInches((int) vel[1]) * yMultiplier,
-                encoderTicksToInches((int) vel[2]) * xMultiplier
+                encoderTicksToInches(vel[0]) * yMultiplier,
+                -encoderTicksToInches(vel[1]) * yMultiplier,
+                encoderTicksToInches(vel[2]) * xMultiplier
         );
     }
 
@@ -94,9 +94,9 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     public List<Double> getWheelVelocities() {
         double[] vel = bRead.getMVelocity();
         return Arrays.asList(
-                -encoderTicksToInches((int) vel[0]),
-                encoderTicksToInches((int) vel[1]),
-                encoderTicksToInches((int) vel[2])
+                vel[0] * yMultiplier,
+                -vel[1] * yMultiplier,
+                vel[2] * xMultiplier
         );
     }
 
