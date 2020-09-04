@@ -22,6 +22,8 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     public static double TICKS_PER_REV = DriveConstants.TICKS_PER_REV;
     public static double WHEEL_RADIUS = DriveConstants.WHEEL_RADIUS; // in
     public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
+    public static double yMultiplier = 1.0594d;
+    public static double xMultiplier = 1.0465d;
 
     public static double LATERAL_DISTANCE = 13; // in; distance between the left and right wheels
     public static double FORWARD_OFFSET = 2.5; // in; offset of the lateral wheel
@@ -72,7 +74,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         }
     }*/
 
-    public static double encoderTicksToInches(int ticks) {
+    public static double encoderTicksToInches(double ticks) {
         return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
     }
 
@@ -81,20 +83,21 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     public List<Double> getWheelPositions() {
         double[] vel = bRead.getMotors();
         return Arrays.asList(
-                encoderTicksToInches((int) vel[0]),
-                -encoderTicksToInches((int) vel[1]),
-                encoderTicksToInches((int) vel[2])
+                encoderTicksToInches(vel[0]) * yMultiplier,
+                -encoderTicksToInches(vel[1]) * yMultiplier,
+                encoderTicksToInches(vel[2]) * xMultiplier
         );
     }
 
+    //hi
     @Nullable
     @Override
     public List<Double> getWheelVelocities() {
         double[] vel = bRead.getMVelocity();
         return Arrays.asList(
-                -encoderTicksToInches((int) vel[0]),
-                encoderTicksToInches((int) vel[1]),
-                encoderTicksToInches((int) vel[2])
+                vel[0] * yMultiplier,
+                -vel[1] * yMultiplier,
+                vel[2] * xMultiplier
         );
     }
 

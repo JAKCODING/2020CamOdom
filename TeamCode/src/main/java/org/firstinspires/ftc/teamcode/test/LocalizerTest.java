@@ -60,6 +60,6 @@ public class LocalizerTest extends OpMode {
         telemetry.addLine("RawX1: " + localizer.bRead.getMotors()[0] + ", Raw X2: " + localizer.bRead.getMotors()[1] + ", Raw Y: " + localizer.bRead.getMotors()[2]);
         telemetry.addLine("X1: " + localizer.encoderTicksToInches((int)localizer.bRead.getMotors()[0]) + ", X2: " + localizer.encoderTicksToInches((int)localizer.bRead.getMotors()[1]) + ", Y: " + localizer.encoderTicksToInches((int)localizer.bRead.getMotors()[2]));
         telemetry.addLine("X1: " + localizer.encoderTicksToInches(encX.getCurrentPosition()) + ", X2: " + localizer.encoderTicksToInches(encR.getCurrentPosition()) + ", Y: " + localizer.encoderTicksToInches(encY.getCurrentPosition()));
-        telemetry.addData("Ang: ", pose.getHeading());
+        telemetry.addData("Ang: ", Math.toDegrees(pose.getHeading()));
     }
 }
