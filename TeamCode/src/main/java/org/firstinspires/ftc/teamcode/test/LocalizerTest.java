@@ -5,11 +5,14 @@ import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.eventloop.opmode.TeleOp;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 
 import org.firstinspires.ftc.teamcode.drive.EnforcersLocalizer;
 import org.firstinspires.ftc.teamcode.util.BulkRead;
 import org.firstinspires.ftc.teamcode.util.Gyroscope;
+
+import java.util.Arrays;
 
 @TeleOp(name = "localizer test")
 public class LocalizerTest extends OpMode {
@@ -18,7 +21,8 @@ public class LocalizerTest extends OpMode {
     Pose2d pose = new Pose2d();
     LynxModule controlHub;
 
-    DcMotor fLeft, bLeft, fRight, bRight, encX, encY, encR;
+    DcMotor fLeft, bLeft, fRight, bRight;
+    DcMotorEx encX, encY, encR;
 
     public void init() {
         controlHub = hardwareMap.get(LynxModule.class, "Control Hub");
@@ -28,9 +32,9 @@ public class LocalizerTest extends OpMode {
         fRight = hardwareMap.dcMotor.get("fRight");
         bRight = hardwareMap.dcMotor.get("bRight");
 
-        encX = hardwareMap.dcMotor.get("bRight");
-        encR = hardwareMap.dcMotor.get("bLeft");
-        encY = hardwareMap.dcMotor.get("fRight");
+        encX = hardwareMap.get(DcMotorEx.class, "bRight");
+        encR = hardwareMap.get(DcMotorEx.class,"bLeft");
+        encY = hardwareMap.get(DcMotorEx.class,"fRight");
 
         fLeft.setDirection(DcMotorSimple.Direction.REVERSE);
 
@@ -60,6 +64,8 @@ public class LocalizerTest extends OpMode {
         telemetry.addLine("RawX1: " + localizer.bRead.getMotors()[0] + ", Raw X2: " + localizer.bRead.getMotors()[1] + ", Raw Y: " + localizer.bRead.getMotors()[2]);
         telemetry.addLine("X1: " + localizer.encoderTicksToInches((int)localizer.bRead.getMotors()[0]) + ", X2: " + localizer.encoderTicksToInches((int)localizer.bRead.getMotors()[1]) + ", Y: " + localizer.encoderTicksToInches((int)localizer.bRead.getMotors()[2]));
         telemetry.addLine("X1: " + localizer.encoderTicksToInches(encX.getCurrentPosition()) + ", X2: " + localizer.encoderTicksToInches(encR.getCurrentPosition()) + ", Y: " + localizer.encoderTicksToInches(encY.getCurrentPosition()));
+        telemetry.addData("Vel: ", Arrays.toString(localizer.getWheelVelocities().toArray()));
+        telemetry.addData("Velocity: ", localizer.getPoseVelocity());
         telemetry.addData("Ang: ", Math.toDegrees(pose.getHeading()));
     }
 }
