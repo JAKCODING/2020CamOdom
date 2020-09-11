@@ -5,8 +5,10 @@ import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.localization.ThreeTrackingWheelLocalizer;
 import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
+import com.qualcomm.robotcore.util.ElapsedTime;
 
 import org.firstinspires.ftc.teamcode.T265.T265;
 import org.firstinspires.ftc.teamcode.util.BulkRead;
@@ -15,12 +17,19 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
+import static java.lang.Float.NaN;
+
 public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
+
+    public static double encoderTicksToInches(double ticks) {
+        return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
+    }
 
     LynxModule lMod;
 
-    public static double TICKS_PER_REV = DriveConstants.TICKS_PER_REV;
-    public static double WHEEL_RADIUS = DriveConstants.WHEEL_RADIUS; // in
+    public static double TICKS_PER_REV = 8192;
+    public static double WHEEL_RADIUS = .74d; // in
+    public static double TICKS_PER_INCH = TICKS_PER_REV/(2 * Math.PI * WHEEL_RADIUS);
     public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
     public static double yMultiplier = 1.0594d;
     public static double xMultiplier = 1.0465d;
@@ -33,7 +42,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     int portL, portR, portF;
 
     boolean isStarted = false;
-    private DcMotor leftEncoder, rightEncoder, frontEncoder;
+    private DcMotorEx leftEncoder, rightEncoder, frontEncoder;
     public BulkRead bRead;
     T265 slamra;
 
@@ -49,9 +58,9 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
 
         lMod = hardwareMap.get(LynxModule.class, "Control Hub");
 
-        leftEncoder = hardwareMap.dcMotor.get("bRight");
-        rightEncoder = hardwareMap.dcMotor.get("bLeft");
-        frontEncoder = hardwareMap.dcMotor.get("fRight");
+        leftEncoder = hardwareMap.get(DcMotorEx.class, "bRight");
+        rightEncoder = hardwareMap.get(DcMotorEx.class,"bLeft");
+        frontEncoder = hardwareMap.get(DcMotorEx.class,"fRight");
 
         //leftEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
         frontEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
@@ -74,10 +83,6 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         }
     }*/
 
-    public static double encoderTicksToInches(double ticks) {
-        return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
-    }
-
     @NonNull
     @Override
     public List<Double> getWheelPositions() {
@@ -95,10 +100,11 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     public List<Double> getWheelVelocities() {
         double[] vel = bRead.getMVelocity();
         return Arrays.asList(
-                vel[0] * yMultiplier,
-                -vel[1] * yMultiplier,
-                vel[2] * xMultiplier
+                encoderTicksToInches(vel[0]) * yMultiplier,
+                -encoderTicksToInches(vel[1]) * yMultiplier,
+                encoderTicksToInches(vel[2]) * xMultiplier
         );
+
     }
 
     @Override

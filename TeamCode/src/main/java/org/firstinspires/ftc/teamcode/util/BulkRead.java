@@ -70,9 +70,9 @@ public class BulkRead {
         try
         {
             LynxModule.BulkData bData = controlHub.getBulkData();
-            double posOne = (x.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portX1)/ DriveConstants.TICKS_PER_INCH : bData.getMotorVelocity(portX1)/ DriveConstants.TICKS_PER_INCH;
-            double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portR)/ DriveConstants.TICKS_PER_INCH : bData.getMotorVelocity(portR)/ DriveConstants.TICKS_PER_INCH;
-            double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portY)/ DriveConstants.TICKS_PER_INCH : bData.getMotorVelocity(portY)/ DriveConstants.TICKS_PER_INCH;
+            double posOne = (x.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portX1) : bData.getMotorVelocity(portX1);
+            double posTwo = (r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portR) : bData.getMotorVelocity(portR);
+            double posThree = (y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portY) : bData.getMotorVelocity(portY);
             return new double[]{posOne, posTwo, posThree};
         }
 

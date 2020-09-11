@@ -63,8 +63,8 @@ public class BulkReadTest extends SuperAuto {
 
         double[] retVal = bRead.getMotors();
         double[] velVal = bRead.getMVelocity();
-        String readVal = retVal[0] + " " + retVal[1];
-        String velocityVal = velVal[0] + " " + velVal[1];
+        String readVal = retVal[0] + " " + retVal[1] + " " + retVal[2];
+        String velocityVal = velVal[0] + " " + velVal[1] + " " + velVal[2];
 
         switch (stepCounter) {
             case 0:
