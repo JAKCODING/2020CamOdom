@@ -214,8 +214,8 @@ public class SampleMecanumDrive extends MecanumDrive {
 
         packet.put("mode", mode);
 
-        packet.put("x", currentPose.getX());
-        packet.put("y", currentPose.getY());
+        packet.put("x", -currentPose.getY());
+        packet.put("y", currentPose.getX());
         packet.put("heading", currentPose.getHeading());
 
         packet.put("xError", lastError.getX());

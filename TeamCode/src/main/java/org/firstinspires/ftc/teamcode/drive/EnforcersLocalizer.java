@@ -39,7 +39,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     double poseX=0, poseY=0, poseAng=0;
     double velX=0, velY=0, velAng=0;
 
-    int portL, portR, portF;
+    //int portL, portR, portF;
 
     boolean isStarted = false;
     private DcMotorEx leftEncoder, rightEncoder, frontEncoder;
@@ -65,7 +65,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         //leftEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
         //frontEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
 
-        portL = leftEncoder.getPortNumber(); portR = rightEncoder.getPortNumber(); portF = frontEncoder.getPortNumber();
+        //portL = leftEncoder.getPortNumber(); portR = rightEncoder.getPortNumber(); portF = frontEncoder.getPortNumber();
         bRead = new BulkRead(lMod, leftEncoder, rightEncoder, frontEncoder);
         //slamra = new T265(hardwareMap, 0, -5.625, 7.625, 0);
 

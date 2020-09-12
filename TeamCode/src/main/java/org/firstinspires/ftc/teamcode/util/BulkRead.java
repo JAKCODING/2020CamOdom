@@ -7,6 +7,7 @@ import com.qualcomm.hardware.lynx.LynxModule;
 import com.qualcomm.hardware.lynx.commands.core.LynxGetBulkInputDataCommand;
 import com.qualcomm.hardware.lynx.commands.core.LynxGetBulkInputDataResponse;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynch;
 import com.qualcomm.robotcore.hardware.I2cDeviceSynchImplOnSimple;
@@ -22,10 +23,10 @@ public class BulkRead {
 
     LynxModule controlHub;
 
-    public DcMotor x, r, y;
+    public DcMotorEx x, r, y;
     public int portX1, portR, portY;
 
-    public BulkRead(LynxModule controlHub, DcMotor x, DcMotor r, DcMotor y) {
+    public BulkRead(LynxModule controlHub, DcMotorEx x, DcMotorEx r, DcMotorEx y) {
 
         this.controlHub = controlHub;
 
@@ -84,7 +85,7 @@ public class BulkRead {
     }
 
     //TODO: Change this to the above method of response.
-    public synchronized double[] getGenericMotors(DcMotor d1, DcMotor d2, DcMotor d3, DcMotor d4) {
+    public synchronized double[] getGenericMotors(DcMotorEx d1, DcMotorEx d2, DcMotorEx d3, DcMotorEx d4) {
 
         LynxGetBulkInputDataCommand command = new LynxGetBulkInputDataCommand(controlHub);
         LynxGetBulkInputDataResponse lynxResponse;
