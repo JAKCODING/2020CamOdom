@@ -117,7 +117,7 @@ public class DriveFeedforwardTuner extends LinearOpMode {
             double power = vel / maxVel;
 
             timeSamples.add(elapsedTime);
-            positionSamples.add(drive.getPoseEstimate().getX());
+            positionSamples.add(-drive.getPoseEstimate().getY());
             powerSamples.add(power);
 
             drive.setDrivePower(new Pose2d(power, 0.0, 0.0));
@@ -194,7 +194,7 @@ public class DriveFeedforwardTuner extends LinearOpMode {
                 }
 
                 timeSamples.add(elapsedTime);
-                positionSamples.add(drive.getPoseEstimate().getX());
+                positionSamples.add(-drive.getPoseEstimate().getY());
                 powerSamples.add(MAX_POWER);
 
                 drive.updatePoseEstimate();

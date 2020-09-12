@@ -63,7 +63,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         frontEncoder = hardwareMap.get(DcMotorEx.class,"fRight");
 
         //leftEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
-        frontEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
+        //frontEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
 
         portL = leftEncoder.getPortNumber(); portR = rightEncoder.getPortNumber(); portF = frontEncoder.getPortNumber();
         bRead = new BulkRead(lMod, leftEncoder, rightEncoder, frontEncoder);
@@ -90,7 +90,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         return Arrays.asList(
                 encoderTicksToInches(vel[0]) * yMultiplier,
                 -encoderTicksToInches(vel[1]) * yMultiplier,
-                encoderTicksToInches(vel[2]) * xMultiplier
+                -encoderTicksToInches(vel[2]) * xMultiplier
         );
     }
 
@@ -102,7 +102,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         return Arrays.asList(
                 encoderTicksToInches(vel[0]) * yMultiplier,
                 -encoderTicksToInches(vel[1]) * yMultiplier,
-                encoderTicksToInches(vel[2]) * xMultiplier
+                -encoderTicksToInches(vel[2]) * xMultiplier
         );
 
     }
