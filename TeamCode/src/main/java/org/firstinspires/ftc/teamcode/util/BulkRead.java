@@ -30,7 +30,7 @@ public class BulkRead {
     private NanoClock clock;
     private double[] lastPosition = {0, 0, 0};
     private double[] velocityEstimate = {0.0, 0.0, 0.0};
-    private double lastUpdateTime;
+    private double lastUpdateTime[] = {0, 0, 0};
 
     public BulkRead(LynxModule controlHub, DcMotorEx x, DcMotorEx r, DcMotorEx y) {
 
@@ -45,7 +45,6 @@ public class BulkRead {
         portY = this.y.getPortNumber();
 
         clock = NanoClock.system();
-        this.lastUpdateTime = clock.seconds();
 
     }
 
@@ -84,10 +83,10 @@ public class BulkRead {
             for(int i = 0; i < 3; i++) {
                 if (currentPosition[i] != lastPosition[i]) {
                     double currentTime = clock.seconds();
-                    double dt = currentTime - lastUpdateTime;
+                    double dt = currentTime - lastUpdateTime[i];
                     velocityEstimate[i] = (currentPosition[i] - lastPosition[i]) / dt;
                     lastPosition[i] = currentPosition[i];
-                    lastUpdateTime = currentTime;
+                    lastUpdateTime[i] = currentTime;
                 }
             }
 

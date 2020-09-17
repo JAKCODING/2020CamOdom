@@ -164,7 +164,6 @@
       "project": {
         "compilerSettingsCacheFolder": "C:\\Users\\Krishna B\\StudioProjects\\2020CamOdom\\.cxx",
         "cxxFolder": "C:\\Users\\Krishna B\\StudioProjects\\2020CamOdom\\.cxx",
-        "ideBuildTargetAbi": "arm64-v8a,armeabi-v7a,armeabi",
         "isBuildOnlyTargetAbiEnabled": true,
         "isCmakeBuildCohabitationEnabled": false,
         "isNativeCompilerSettingsCacheEnabled": false,
