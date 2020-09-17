@@ -13,6 +13,7 @@ import com.qualcomm.hardware.lynx.LynxNackException;
 import com.qualcomm.hardware.lynx.commands.core.LynxI2cConfigureChannelCommand;
 import com.qualcomm.robotcore.eventloop.opmode.OpMode;
 import com.qualcomm.robotcore.hardware.DcMotor;
+import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.DistanceSensor;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.spartronics4915.lib.T265Camera;
@@ -29,7 +30,7 @@ import java.util.List;
 
 public class SuperAuto extends OpMode {
 
-    DcMotor encX, encY, encR;
+    DcMotorEx encX, encY, encR;
     LynxModule controlHub;
     BulkRead bRead;
     SampleMecanumDrive drive;
@@ -42,9 +43,9 @@ public class SuperAuto extends OpMode {
 
         controlHub = hardwareMap.get(LynxModule.class, "Control Hub");
 
-        encX = hardwareMap.dcMotor.get("bLeft");
-        encR = hardwareMap.dcMotor.get("fRight");
-        encY = hardwareMap.dcMotor.get("bRight");
+        encX = hardwareMap.get(DcMotorEx.class, "bLeft");
+        encR = hardwareMap.get(DcMotorEx.class,"fRight");
+        encY = hardwareMap.get(DcMotorEx.class,"bRight");
 
         bRead = new BulkRead(controlHub, encX, encR, encY);
         drive = new SampleMecanumDrive(hardwareMap);

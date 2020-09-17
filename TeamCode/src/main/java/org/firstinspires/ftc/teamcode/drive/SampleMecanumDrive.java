@@ -80,6 +80,7 @@ public class SampleMecanumDrive extends MecanumDrive {
 
     private DcMotorEx leftFront, leftRear, rightRear, rightFront;
     private List<DcMotorEx> motors;
+    public EnforcersLocalizer locale;
 
     public SampleMecanumDrive(HardwareMap hardwareMap) {
         super(kV, kA, kStatic, TRACK_WIDTH);
@@ -146,7 +147,8 @@ public class SampleMecanumDrive extends MecanumDrive {
 
         // TODO: if desired, use setLocalizer() to change the localization method
         // for instance, setLocalizer(new ThreeTrackingWheelLocalizer(...));
-        setLocalizer(new EnforcersLocalizer(hardwareMap));
+        locale = new EnforcersLocalizer(hardwareMap);
+        setLocalizer(locale);
     }
 
     public TrajectoryBuilder trajectoryBuilder(Pose2d startPose) {

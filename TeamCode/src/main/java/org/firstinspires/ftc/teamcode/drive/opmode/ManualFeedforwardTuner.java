@@ -15,6 +15,7 @@ import com.qualcomm.robotcore.eventloop.opmode.LinearOpMode;
 
 import org.firstinspires.ftc.teamcode.drive.DriveConstants;
 import org.firstinspires.ftc.teamcode.drive.SampleMecanumDrive;
+import org.firstinspires.ftc.teamcode.util.BulkRead;
 
 import java.util.Objects;
 
@@ -92,7 +93,10 @@ public class ManualFeedforwardTuner extends LinearOpMode {
             telemetry.addData("targetVelocity", motionState.getV());
 
             Pose2d poseVelo = Objects.requireNonNull(drive.getPoseVelocity(), "poseVelocity() must not be null. Ensure that the getWheelVelocities() method has been overridden in your localizer.");
-            double currentVelo = -poseVelo.getY();
+            double currentVelo = drive.getPoseEstimate().getY();/*-poseVelo.getY();*/ /*drive.locale.bRead.getMotors()[2];*/
+
+            //double currentVelo = -DriveConstants.encoderTicksToInches(drive.locale.bRead.getMVelocity()[2]);
+            //double currentVelo = -DriveConstants.encoderTicksToInches(drive.locale.bRead.y.getVelocity());
 
             telemetry.addData("poseVelocity", currentVelo);
             telemetry.addData("error", currentVelo - motionState.getV());

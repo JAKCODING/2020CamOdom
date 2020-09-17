@@ -99,12 +99,12 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     @Override
     public List<Double> getWheelVelocities() {
         double[] vel = bRead.getMVelocity();
+        frontEncoder.getCorrectedVelocity();
         return Arrays.asList(
                 encoderTicksToInches(vel[0]) * yMultiplier,
                 -encoderTicksToInches(vel[1]) * yMultiplier,
                 -encoderTicksToInches(vel[2]) * xMultiplier
         );
-
     }
 
     @Override
@@ -112,8 +112,9 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         super.update();
         /*velocity = getOdomVelocity();
         lastPose = getOdomPosition();
-        lastTime = System.currentTimeMillis();
+        lastTime = eT.milliseconds();*/
 
+        /*
         if (isStarted) {
             slamra.sendOdometry(velocity.getY(), -velocity.getX());
             slamra.update();
@@ -163,6 +164,6 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
  */
 
     public Pose2d getOdomVelocity() {
-        return getOdomPosition().minus(lastPose).div((System.currentTimeMillis() - lastTime)/1000);
+        return getOdomPosition().minus(lastPose).div((eT.milliseconds() - lastTime)/1000);
     }
 }
