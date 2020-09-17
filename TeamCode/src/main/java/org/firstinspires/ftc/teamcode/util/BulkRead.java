@@ -28,11 +28,11 @@ public class BulkRead {
     public int portX1, portR, portY;
     private final static int CPS_STEP = 0x10000;
     private NanoClock clock;
-    private int lastPosition;
-    private double velocityEstimate;
+    private double[] lastPosition = {0, 0, 0};
+    private double[] velocityEstimate = {0.0, 0.0, 0.0};
     private double lastUpdateTime;
 
-    public BulkRead(LynxModule controlHub, DcMotorEx x, DcMotorEx r, DcMotorEx y, DcMotorEx motor) {
+    public BulkRead(LynxModule controlHub, DcMotorEx x, DcMotorEx r, DcMotorEx y) {
 
         this.controlHub = controlHub;
 
@@ -45,9 +45,6 @@ public class BulkRead {
         portY = this.y.getPortNumber();
 
         clock = NanoClock.system();
-
-        this.lastPosition = 0;
-        this.velocityEstimate = 0.0;
         this.lastUpdateTime = clock.seconds();
 
     }
@@ -82,10 +79,22 @@ public class BulkRead {
         try
         {
             LynxModule.BulkData bData = controlHub.getBulkData();
+
+            double[] currentPosition = {getMotors()[0], getMotors()[1], getMotors()[2]};
+            for(int i = 0; i < 3; i++) {
+                if (currentPosition[i] != lastPosition[i]) {
+                    double currentTime = clock.seconds();
+                    double dt = currentTime - lastUpdateTime;
+                    velocityEstimate[i] = (currentPosition[i] - lastPosition[i]) / dt;
+                    lastPosition[i] = currentPosition[i];
+                    lastUpdateTime = currentTime;
+                }
+            }
+
             double posOne = /*x.getVelocity();*/(x.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portX1) : bData.getMotorVelocity(portX1);
-            double posTwo = r.getVelocity();/*(r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portR) : bData.getMotorVelocity(portR);*/
-            double posThree = y.getVelocity();/*(y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portY) : bData.getMotorVelocity(portY);*/
-            return new double[]{posOne, posTwo, posThree};
+            double posTwo = /*r.getVelocity();*/(r.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portR) : bData.getMotorVelocity(portR);
+            double posThree = /*y.getVelocity();*/(y.getDirection() == DcMotorSimple.Direction.REVERSE) ? -bData.getMotorVelocity(portY) : bData.getMotorVelocity(portY);
+            return new double[]{inverseOverflow(posOne, velocityEstimate[0]), inverseOverflow(posTwo, velocityEstimate[1]), inverseOverflow(posThree, velocityEstimate[2])};
         }
 
         catch (Exception e)
@@ -126,18 +135,5 @@ public class BulkRead {
         }
         return real;
     }
-
-    /*public int getCurrentPosition() {
-        int multiplier = direction.getMultiplier();
-        int currentPosition = motor.getCurrentPosition() * multiplier;
-        if (currentPosition != lastPosition) {
-            double currentTime = clock.seconds();
-            double dt = currentTime - lastUpdateTime;
-            velocityEstimate = (currentPosition - lastPosition) / dt;
-            lastPosition = currentPosition;
-            lastUpdateTime = currentTime;
-        }
-        return currentPosition;
-    }*/
 
 }
