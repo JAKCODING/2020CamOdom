@@ -99,7 +99,6 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     @Override
     public List<Double> getWheelVelocities() {
         double[] vel = bRead.getMVelocity();
-        frontEncoder.getCorrectedVelocity();
         return Arrays.asList(
                 encoderTicksToInches(vel[0]) * yMultiplier,
                 -encoderTicksToInches(vel[1]) * yMultiplier,
@@ -163,7 +162,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
  * @return Velocity in inches per second and radians per second
  */
 
-    public Pose2d getOdomVelocity() {
+    /*public Pose2d getOdomVelocity() {
         return getOdomPosition().minus(lastPose).div((eT.milliseconds() - lastTime)/1000);
-    }
+    }*/
 }
