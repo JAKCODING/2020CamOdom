@@ -265,7 +265,7 @@ public class SampleMecanumDrive extends MecanumDrive {
 
                 fieldOverlay.setStroke("#3F51B5");
                 DashboardUtil.drawPoseHistory(fieldOverlay, poseHistory);
-                DashboardUtil.drawRobot(fieldOverlay, currentPose);
+                //DashboardUtil.drawRobot(fieldOverlay, currentPose);
 
                 if (!follower.isFollowing()) {
                     mode = Mode.IDLE;
@@ -276,6 +276,7 @@ public class SampleMecanumDrive extends MecanumDrive {
             }
         }
 
+        DashboardUtil.drawRobot(fieldOverlay, currentPose);
         dashboard.sendTelemetryPacket(packet);
     }
 
