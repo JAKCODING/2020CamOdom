@@ -34,8 +34,8 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     public static double yMultiplier = 1.0594d;
     public static double xMultiplier = 1.0465d;
 
-    public static double LATERAL_DISTANCE = 13; // in; distance between the left and right wheels
-    public static double FORWARD_OFFSET = 2.5; // in; offset of the lateral wheel
+    public static double LATERAL_DISTANCE = 12.75; // in; distance between the left and right wheels
+    public static double FORWARD_OFFSET = 2.3; // in; offset of the lateral wheel
     double poseX=0, poseY=0, poseAng=0;
     double velX=0, velY=0, velAng=0;
 
