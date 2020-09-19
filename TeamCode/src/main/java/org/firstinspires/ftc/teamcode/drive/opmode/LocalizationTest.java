@@ -29,10 +29,11 @@ public class LocalizationTest extends LinearOpMode {
     public static double VY_WEIGHT = 1;
     public static double OMEGA_WEIGHT = 1;
 
+    FtcDashboard dashboard = FtcDashboard.getInstance();
+
     @Override
     public void runOpMode() throws InterruptedException {
-        FtcDashboard dashboard = FtcDashboard.getInstance();
-        telemetry = new MultipleTelemetry(telemetry, FtcDashboard.getInstance().getTelemetry());
+        telemetry = new MultipleTelemetry(telemetry, dashboard.getTelemetry());
 
         SampleMecanumDrive drive = new SampleMecanumDrive(hardwareMap);
         drive.setLocalizer(new EnforcersLocalizer(hardwareMap));
@@ -71,10 +72,6 @@ public class LocalizationTest extends LinearOpMode {
             telemetry.addData("y", poseEstimate.getY());
             telemetry.addData("heading", Math.toDegrees(poseEstimate.getHeading()));
             telemetry.update();
-
-            TelemetryPacket packet = new TelemetryPacket();
-            DashboardUtil.drawRobot(packet.fieldOverlay(), poseEstimate);
-            dashboard.sendTelemetryPacket(packet);
         }
     }
 }
