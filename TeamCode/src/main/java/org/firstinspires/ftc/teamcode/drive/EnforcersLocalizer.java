@@ -18,7 +18,6 @@ import org.jetbrains.annotations.Nullable;
 import java.util.Arrays;
 import java.util.List;
 
-import static java.lang.Float.NaN;
 @Config
 public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
 
@@ -69,11 +68,11 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
 
         //portL = leftEncoder.getPortNumber(); portR = rightEncoder.getPortNumber(); portF = frontEncoder.getPortNumber();
         bRead = new BulkRead(lMod, leftEncoder, rightEncoder, frontEncoder);
-        //slamra = new T265(hardwareMap, 0, -4.6, 7.75, 0);
+        slamra = new T265(hardwareMap, 0, -4.6, 7.75, 0);
 
     }
 
-    /*public void start() {
+    public void start() {
         slamra.start();
         isStarted = true;
     }
@@ -83,7 +82,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
             slamra.stop();
             isStarted = false;
         }
-    }*/
+    }
 //
     @NonNull
     @Override
@@ -111,13 +110,10 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     @Override
     public void update() {
         super.update();
-        /*velocity = getOdomVelocity();
-        lastPose = getOdomPosition();
-        lastTime = eT.milliseconds();*/
+        velocity = getPoseVelocity();
 
-        /*
         if (isStarted) {
-            slamra.sendOdometry(velocity.getY(), -velocity.getX());
+            slamra.sendOdometry(-velocity.getY(), velocity.getX());
             slamra.update();
 
             poseX = slamra.getX();
@@ -127,7 +123,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
             velX = slamra.getVelX();
             velY = slamra.getVelY();
             velAng = slamra.getVelAng();
-        }*/
+        }
     }
     /**
      * Get the position using the tracking camera
@@ -147,24 +143,4 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     public Pose2d getCamVelocity() {
         return new Pose2d(velX, velY, velAng);
     }
-
-
-/**
- * Get the position using wheeled odometry
- * @return Position in inches and radians
- */
-
-    public Pose2d getOdomPosition() {
-        return getPoseEstimate();
-    }
-
-
-/**
- * Get the velocity using wheeled odometry
- * @return Velocity in inches per second and radians per second
- */
-
-    /*public Pose2d getOdomVelocity() {
-        return getOdomPosition().minus(lastPose).div((eT.milliseconds() - lastTime)/1000);
-    }*/
 }
