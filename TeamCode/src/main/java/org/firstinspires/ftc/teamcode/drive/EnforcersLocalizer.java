@@ -69,7 +69,7 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
 
         //portL = leftEncoder.getPortNumber(); portR = rightEncoder.getPortNumber(); portF = frontEncoder.getPortNumber();
         bRead = new BulkRead(lMod, leftEncoder, rightEncoder, frontEncoder);
-        //slamra = new T265(hardwareMap, 0, -5.625, 7.625, 0);
+        //slamra = new T265(hardwareMap, 0, -4.6, 7.75, 0);
 
     }
 
