@@ -1,6 +1,7 @@
 package org.firstinspires.ftc.teamcode.drive;
 import android.support.annotation.NonNull;
 
+import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.localization.ThreeTrackingWheelLocalizer;
 import com.qualcomm.hardware.lynx.LynxModule;
@@ -18,7 +19,7 @@ import java.util.Arrays;
 import java.util.List;
 
 import static java.lang.Float.NaN;
-
+@Config
 public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
 
     public static double encoderTicksToInches(double ticks) {
@@ -31,10 +32,11 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     public static double WHEEL_RADIUS = .74d; // in
     public static double TICKS_PER_INCH = TICKS_PER_REV/(2 * Math.PI * WHEEL_RADIUS);
     public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
-    public static double yMultiplier = 1.0594d;
-    public static double xMultiplier = 1.0465d;
+    public static double rMultiplier = 1.022247126d;
+    public static double xMultiplier = 1.027365986d;
+    public static double yMultiplier = 1.014739085d;
 
-    public static double LATERAL_DISTANCE = 12.75; // in; distance between the left and right wheels
+    public static double LATERAL_DISTANCE = /*12.6*/13.4; // in; distance between the left and right wheels
     public static double FORWARD_OFFSET = 2.3; // in; offset of the lateral wheel
     double poseX=0, poseY=0, poseAng=0;
     double velX=0, velY=0, velAng=0;
@@ -88,9 +90,9 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     public List<Double> getWheelPositions() {
         double[] vel = bRead.getMotors();
         return Arrays.asList(
-                encoderTicksToInches(vel[0]) * yMultiplier,
-                -encoderTicksToInches(vel[1]) * yMultiplier,
-                -encoderTicksToInches(vel[2]) * xMultiplier
+                encoderTicksToInches(vel[0]) * xMultiplier,
+                encoderTicksToInches(vel[1]) * rMultiplier,
+                -encoderTicksToInches(vel[2]) * yMultiplier
         );
     }
 
@@ -100,9 +102,9 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
     public List<Double> getWheelVelocities() {
         double[] vel = bRead.getMVelocity();
         return Arrays.asList(
-                encoderTicksToInches(vel[0]) * yMultiplier,
-                -encoderTicksToInches(vel[1]) * yMultiplier,
-                -encoderTicksToInches(vel[2]) * xMultiplier
+                encoderTicksToInches(vel[0]) * xMultiplier,
+                encoderTicksToInches(vel[1]) * rMultiplier,
+                -encoderTicksToInches(vel[2]) * yMultiplier
         );
     }
 

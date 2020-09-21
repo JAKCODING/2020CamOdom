@@ -1,5 +1,5 @@
 {
-  "ndkFolder": "C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147",
+  "ndkFolder": "C:\\Users\\Krishna B\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147",
   "messages": [
     {
       "level": "INFO",
@@ -7,7 +7,7 @@
     },
     {
       "level": "INFO",
-      "message": "ndk.dir in local.properties is C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147"
+      "message": "ndk.dir in local.properties is not set"
     },
     {
       "level": "INFO",
@@ -15,27 +15,23 @@
     },
     {
       "level": "INFO",
-      "message": "sdkFolder is C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk"
+      "message": "sdkFolder is C:\\Users\\Krishna B\\AppData\\Local\\Android\\Sdk"
     },
     {
       "level": "INFO",
-      "message": "Considering C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147 by ndk.dir"
+      "message": "Considering C:\\Users\\Krishna B\\AppData\\Local\\Android\\Sdk\\ndk-bundle in SDK ndk-bundle folder"
     },
     {
       "level": "INFO",
-      "message": "Considering C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk-bundle in SDK ndk-bundle folder"
+      "message": "Considering C:\\Users\\Krishna B\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147 in SDK ndk folder"
     },
     {
       "level": "INFO",
-      "message": "Considering C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.0.6113669 in SDK ndk folder"
+      "message": "Rejected C:\\Users\\Krishna B\\AppData\\Local\\Android\\Sdk\\ndk-bundle in SDK ndk-bundle folder because that location has no source.properties"
     },
     {
       "level": "INFO",
-      "message": "Considering C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147 in SDK ndk folder"
-    },
-    {
-      "level": "INFO",
-      "message": "Choosing C:\\Users\\mlevi\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147 from ndk.dir which had the requested version 21.3.6528147"
+      "message": "Found requested NDK version 21.3.6528147 at C:\\Users\\Krishna B\\AppData\\Local\\Android\\Sdk\\ndk\\21.3.6528147"
     }
   ]
 }

@@ -25,6 +25,12 @@ public class BulkReadTest extends SuperAuto {
 
     ExpansionHubEx expX;
     DistanceSensor lDist, rDist;
+    public static double TICKS_PER_REV = 8192;
+    public static double WHEEL_RADIUS = .74d; // in
+    public static double TICKS_PER_INCH = TICKS_PER_REV/(2 * Math.PI * WHEEL_RADIUS);
+    public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
+    public static double yMultiplier = 1.0594d;
+    public static double xMultiplier = 1.0465d;
 
     int stepCounter = 0;
 //TODO: CHANGE I2C ADDRESS
@@ -63,16 +69,16 @@ public class BulkReadTest extends SuperAuto {
 
         double[] retVal = bRead.getMotors();
         double[] velVal = bRead.getMVelocity();
-        String readVal = retVal[0] + " " + retVal[1] + " " + retVal[2];
+        String readVal = encoderTicksToInches(retVal[0]) + " " + encoderTicksToInches(retVal[1]) + " " + encoderTicksToInches(retVal[2]);
         String velocityVal = velVal[0] + " " + velVal[1] + " " + velVal[2];
 
-        switch (stepCounter) {
+        /*switch (stepCounter) {
             case 0:
                 Trajectory traj = drive.trajectoryBuilder(new Pose2d(0, 0))
                         .forward(10)
                         .build();
                 drive.followTrajectory(traj);
-        }
+        }*/
         stepCounter++;
 
         telemetry.addData("Position return: ", readVal);
@@ -84,5 +90,9 @@ public class BulkReadTest extends SuperAuto {
         telemetry.addData("rDist: ", rDist.getDistance(DistanceUnit.CM));
         telemetry.addData("lDist: ", lDist.getDistance(DistanceUnit.CM));
 
+    }
+
+    public static double encoderTicksToInches(double ticks) {
+        return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
     }
 }
