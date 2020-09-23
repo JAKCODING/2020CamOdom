@@ -1,13 +1,12 @@
 package org.firstinspires.ftc.teamcode.drive;
+import android.printservice.PrintService;
 import android.support.annotation.NonNull;
 
 import com.acmerobotics.dashboard.config.Config;
 import com.acmerobotics.roadrunner.geometry.Pose2d;
 import com.acmerobotics.roadrunner.localization.ThreeTrackingWheelLocalizer;
 import com.qualcomm.hardware.lynx.LynxModule;
-import com.qualcomm.robotcore.hardware.DcMotor;
 import com.qualcomm.robotcore.hardware.DcMotorEx;
-import com.qualcomm.robotcore.hardware.DcMotorSimple;
 import com.qualcomm.robotcore.hardware.HardwareMap;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
@@ -17,38 +16,36 @@ import org.jetbrains.annotations.Nullable;
 
 import java.util.Arrays;
 import java.util.List;
+import java.util.Objects;
 
 @Config
 public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
 
-    public static double encoderTicksToInches(double ticks) {
-        return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
-    }
-
+    //Hardware
+    private DcMotorEx leftEncoder, rightEncoder, frontEncoder;
     LynxModule lMod;
+    public BulkRead bRead;
+    T265 slamra;
 
+    //Positional values (tuned) for the odometry wheels
+    public static double LATERAL_DISTANCE = /*12.6*/13.4; // in; distance between the left and right wheels
+    public static double FORWARD_OFFSET = 2.3; // in; offset of the lateral wheel
+
+    //Values for odometry wheels and encoders
     public static double TICKS_PER_REV = 8192;
     public static double WHEEL_RADIUS = .74d; // in
     public static double TICKS_PER_INCH = TICKS_PER_REV/(2 * Math.PI * WHEEL_RADIUS);
     public static double GEAR_RATIO = 1; // output (wheel) speed / input (encoder) speed
+
+    //Multipliers for each odometry wheel
     public static double rMultiplier = 1.022247126d;
     public static double xMultiplier = 1.027365986d;
     public static double yMultiplier = 1.014739085d;
 
-    public static double LATERAL_DISTANCE = /*12.6*/13.4; // in; distance between the left and right wheels
-    public static double FORWARD_OFFSET = 2.3; // in; offset of the lateral wheel
+    //Stored position and velocity values for T265
     double poseX=0, poseY=0, poseAng=0;
     double velX=0, velY=0, velAng=0;
-
-    //int portL, portR, portF;
-
-    boolean isStarted = false;
-    private DcMotorEx leftEncoder, rightEncoder, frontEncoder;
-    public BulkRead bRead;
-    T265 slamra;
-
-    Pose2d velocity, lastPose;
-    double lastTime;
+    Pose2d velocity = new Pose2d();
 
     public EnforcersLocalizer(HardwareMap hardwareMap) {
         super(Arrays.asList(
@@ -63,27 +60,25 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         rightEncoder = hardwareMap.get(DcMotorEx.class,"bLeft");
         frontEncoder = hardwareMap.get(DcMotorEx.class,"fRight");
 
-        //leftEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
-        //frontEncoder.setDirection(DcMotorSimple.Direction.REVERSE);
-
-        //portL = leftEncoder.getPortNumber(); portR = rightEncoder.getPortNumber(); portF = frontEncoder.getPortNumber();
         bRead = new BulkRead(lMod, leftEncoder, rightEncoder, frontEncoder);
-        slamra = new T265(hardwareMap, 0, -4.6, 7.75, 0);
+        //slamra = new T265(hardwareMap, 0, -4.6, 7.75, 0);
 
     }
 
+    /**
+     * Starts the T265 camera
+     */
     public void start() {
         slamra.start();
-        isStarted = true;
     }
 
+    /**
+     * Stops the T265 camera
+     */
     public void stop() {
-        if (isStarted) {
-            slamra.stop();
-            isStarted = false;
-        }
+        slamra.stop();
     }
-//
+
     @NonNull
     @Override
     public List<Double> getWheelPositions() {
@@ -95,7 +90,6 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         );
     }
 
-    //hi
     @Nullable
     @Override
     public List<Double> getWheelVelocities() {
@@ -112,35 +106,39 @@ public class EnforcersLocalizer extends ThreeTrackingWheelLocalizer {
         super.update();
         velocity = getPoseVelocity();
 
-        if (isStarted) {
-            slamra.sendOdometry(-velocity.getY(), velocity.getX());
-            slamra.update();
+        slamra.sendOdometry(-velocity.getY(), velocity.getX());
+        slamra.update();
 
-            poseX = slamra.getX();
-            poseY = slamra.getY();
-            poseAng = slamra.getAng();
+        poseX = slamra.getX();
+        poseY = slamra.getY();
+        poseAng = slamra.getAng();
 
-            velX = slamra.getVelX();
-            velY = slamra.getVelY();
-            velAng = slamra.getVelAng();
-        }
+        velX = slamra.getVelX();
+        velY = slamra.getVelY();
+        velAng = slamra.getVelAng();
     }
+
     /**
      * Get the position using the tracking camera
      * @return Position in inches and degrees
      */
-
     public Pose2d getCamPosition() {
         return new Pose2d(poseX, poseY, poseAng);
     }
 
 
-/**
- * Get the velocity using the tracking camera
- * @return Velocity in inches per second and degrees per second
- */
-
+    /**
+     * Get the velocity using the tracking camera
+     * @return Velocity in inches per second and degrees per second
+     */
     public Pose2d getCamVelocity() {
         return new Pose2d(velX, velY, velAng);
+    }
+
+    /**
+     * Converts encoder ticks to inches travelled
+     */
+    public static double encoderTicksToInches(double ticks) {
+        return WHEEL_RADIUS * 2 * Math.PI * GEAR_RATIO * ticks / TICKS_PER_REV;
     }
 }
