@@ -1,7 +1,7 @@
 [
 {
-  "directory": "C:/Users/Krishna B/StudioProjects/2020CamOdom/TeamCode/.cxx/cmake/release/armeabi-v7a",
-  "command": "C:\\Users\\KRISHN~1\\AppData\\Local\\Android\\Sdk\\ndk\\213~1.652\\TOOLCH~1\\llvm\\prebuilt\\WINDOW~1\\bin\\CLANG_~1.EXE --target=armv7-none-linux-androideabi24 --gcc-toolchain=\"C:/Users/Krishna B/AppData/Local/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64\" --sysroot=\"C:/Users/Krishna B/AppData/Local/Android/Sdk/ndk/21.3.6528147/toolchains/llvm/prebuilt/windows-x86_64/sysroot\"  -Dnative_lib_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -o CMakeFiles\\native-lib.dir\\src\\main\\cpp\\ayopoggers.cpp.o -c \"C:\\Users\\Krishna B\\StudioProjects\\2020CamOdom\\TeamCode\\src\\main\\cpp\\ayopoggers.cpp\"",
-  "file": "C:/Users/Krishna B/StudioProjects/2020CamOdom/TeamCode/src/main/cpp/ayopoggers.cpp"
+  "directory": "C:/Users/Nathanael Gaw/AndroidStudioProjects/2020CamOdom/TeamCode/.cxx/cmake/release/armeabi-v7a",
+  "command": "C:\\Users\\NATHAN~1\\AppData\\Local\\Android\\Sdk\\NDK-BU~1\\TOOLCH~1\\llvm\\prebuilt\\WINDOW~1\\bin\\CLANG_~1.EXE --target=armv7-none-linux-androideabi24 --gcc-toolchain=\"C:/Users/Nathanael Gaw/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64\" --sysroot=\"C:/Users/Nathanael Gaw/AppData/Local/Android/Sdk/ndk-bundle/toolchains/llvm/prebuilt/windows-x86_64/sysroot\"  -Dnative_lib_EXPORTS  -g -DANDROID -fdata-sections -ffunction-sections -funwind-tables -fstack-protector-strong -no-canonical-prefixes -D_FORTIFY_SOURCE=2 -march=armv7-a -mthumb -Wformat -Werror=format-security   -Oz -DNDEBUG  -fPIC   -o CMakeFiles\\native-lib.dir\\src\\main\\cpp\\ayopoggers.cpp.o -c \"C:\\Users\\Nathanael Gaw\\AndroidStudioProjects\\2020CamOdom\\TeamCode\\src\\main\\cpp\\ayopoggers.cpp\"",
+  "file": "C:/Users/Nathanael Gaw/AndroidStudioProjects/2020CamOdom/TeamCode/src/main/cpp/ayopoggers.cpp"
 }
 ]

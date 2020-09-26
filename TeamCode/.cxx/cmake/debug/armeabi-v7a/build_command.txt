@@ -1,19 +1,19 @@
-Executable : C:\Users\Krishna B\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\cmake.exe
+Executable : C:\Users\Nathanael Gaw\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\cmake.exe
 arguments : 
--HC:\Users\Krishna B\StudioProjects\2020CamOdom\TeamCode
+-HC:\Users\Nathanael Gaw\AndroidStudioProjects\2020CamOdom\TeamCode
 -DCMAKE_BUILD_TYPE=Debug
--DCMAKE_TOOLCHAIN_FILE=C:\Users\Krishna B\AppData\Local\Android\Sdk\ndk\21.3.6528147\build\cmake\android.toolchain.cmake
+-DCMAKE_TOOLCHAIN_FILE=C:\Users\Nathanael Gaw\AppData\Local\Android\Sdk\ndk-bundle\build\cmake\android.toolchain.cmake
 -DANDROID_ABI=armeabi-v7a
--DANDROID_NDK=C:\Users\Krishna B\AppData\Local\Android\Sdk\ndk\21.3.6528147
+-DANDROID_NDK=C:\Users\Nathanael Gaw\AppData\Local\Android\Sdk\ndk-bundle
 -DANDROID_PLATFORM=android-24
 -DCMAKE_ANDROID_ARCH_ABI=armeabi-v7a
--DCMAKE_ANDROID_NDK=C:\Users\Krishna B\AppData\Local\Android\Sdk\ndk\21.3.6528147
+-DCMAKE_ANDROID_NDK=C:\Users\Nathanael Gaw\AppData\Local\Android\Sdk\ndk-bundle
 -DCMAKE_EXPORT_COMPILE_COMMANDS=ON
--DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\Users\Krishna B\StudioProjects\2020CamOdom\TeamCode\build\intermediates\cmake\debug\obj\armeabi-v7a
--DCMAKE_MAKE_PROGRAM=C:\Users\Krishna B\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\ninja.exe
+-DCMAKE_LIBRARY_OUTPUT_DIRECTORY=C:\Users\Nathanael Gaw\AndroidStudioProjects\2020CamOdom\TeamCode\build\intermediates\cmake\debug\obj\armeabi-v7a
+-DCMAKE_MAKE_PROGRAM=C:\Users\Nathanael Gaw\AppData\Local\Android\Sdk\cmake\3.10.2.4988404\bin\ninja.exe
 -DCMAKE_SYSTEM_NAME=Android
 -DCMAKE_SYSTEM_VERSION=24
--BC:\Users\Krishna B\StudioProjects\2020CamOdom\TeamCode\.cxx\cmake\debug\armeabi-v7a
+-BC:\Users\Nathanael Gaw\AndroidStudioProjects\2020CamOdom\TeamCode\.cxx\cmake\debug\armeabi-v7a
 -GNinja
 jvmArgs : 
 
