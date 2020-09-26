@@ -10,7 +10,6 @@ import com.qualcomm.robotcore.hardware.DcMotorEx;
 import com.qualcomm.robotcore.hardware.PIDFCoefficients;
 import com.qualcomm.robotcore.util.ElapsedTime;
 
-@Config
 @Autonomous(name="ExPID")
 public class ExPid extends OpMode {
 
